@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'yrb',
-    'pages'
+    'trydjango.apps.yrb',
+    'trydjango.apps.pages'
 ]
 
 MIDDLEWARE = [
@@ -58,7 +58,8 @@ ROOT_URLCONF = 'trydjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(SETTINGS_PATH, 'templates'), 
+                 os.path.join(BASE_DIR, 'trydjango.apps.pages', 'templates', 'trydjango.apps.pages')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,6 +71,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'trydjango.wsgi.application'
 
