@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block head%}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% endblock %}
+{% block title %}
+ Register Page 
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+<div class="container">
+<div class="card">
+<article class="card-body mx-auto">
+	<h4 class="card-title mt-3 text-center">Create Account</h4>
+    
+	<p class="divider-text">
+        <span></span>
+    </p>
+	
+	{% from "_formhelpers.html" import render_field %}
+
+    <form method="POST" action="/register">
+    {{ form.csrf_token }}
+	<div class="form-group input-group">
+		<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+		 </div>
+        <input name="username" class="form-control" placeholder="Username" type="text">
+    </div> <!-- form-group// -->
+    <dl style="color:red">{{ render_field(form.username)}}</dl>
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+		 </div>
+        <input name="email" class="form-control" placeholder="Email address" type="email">
+    </div> <!-- form-group// -->
+    <dl style="color:red">{{ render_field(form.email) }}</dl>
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+		</div>
+        <input class="form-control" name="password" placeholder="New Password" type="password">
+    </div> <!-- form-group// -->
+    <dl style="color:red" >{{ render_field(form.password) }}</dl>
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+		</div>
+        <input class="form-control" name="confirm" placeholder="Repeat Password" type="password">     
+   
+    </div> <!-- form-group// --> 
+    <dl style="color:red">{{ render_field(form.confirm) }}</dl>
+                                         
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+    </div> <!-- form-group// -->      
+    <p class="text-center">Have an account? <a href="{{url_for('login_page')}}">Log In</a> </p>                                                                 
+</form>
+</article>
+</div>
+</div> <!-- card.// -->
+{% endblock %}
+
+ {% block style %}
+body{
+    color: black
+}
+
+.divider-text {
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    
+}
+.divider-text span {
+    padding: 7px;
+    font-size: 12px;
+    position: relative;   
+    z-index: 2;
+    
+}
+.divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    top: 55%;
+    left: 0;
+    z-index: 1;
+   
+}
+.container { 
+  margin: auto;
+  padding: 10%;
+  width: 50%;
+  min-width: 50%;
+}
+
+ {% endblock %}
