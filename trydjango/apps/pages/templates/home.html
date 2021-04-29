@@ -1,13 +1,129 @@
 {% extends 'index.html' %}
+{%load static%}
+{% block head%}
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+{% endblock%}
+
 {% block title %}
    Home Page
 {% endblock %}
 
 {% block content%}
-<h1>Clubs:</h1>
+<div class="container1">
+    <div class="image1">  
+        <p class="caption1">Clubs</p>  
+        </div>
+</div> 
 {% for club in all_clubs %}
-  <h1>{{club.club}}</h1>
-  <p>{{club.desp}}<p>
-  <span></span>
+<br><div class="container" > <hr class="new2">  
+  <div class="row1 all-devices"><span class="badge btn maaz" data-toggle-target="#{{club.club|slugify}}" data-toggle-text"Read less" >> {{club.club}}</span>
+  <div id="{{club.club|slugify}}"  class="panel panel-primary">
+     <div>
+        <p>{{club.desp}}</p>
+      </div>
+    </div>
+  </div>
+</div>
 {% endfor %}
+  
+
 {% endblock %}
+{%block script%} 
+
+<script src="{%static 'js/jquery.declarativeToggle.js'%}"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  {%endblock%}
+
+{%block style%}
+
+
+/* declarativeToggle Styles to copy and paste */
+
+ @media screen and (max-width: 767px) {
+
+.toggle-btn-visible {
+  position: static;
+  visibility: visible;
+}
+
+.toggle-target-hidden { display: none; }
+
+.toggle-target-expanded { display: block; }
+}
+
+.all-devices .toggle-btn-visible {
+  position: static;
+  visibility: visible;
+}
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+.all-devices .toggle-target-hidden { display: none; }
+
+.all-devices .toggle-target-expanded { display: block; }
+
+
+.caption1 {
+   font-family: 'Playfair Display', serif;
+   font-size: 40px;
+   border: 3px solid white;
+   color: white;
+   text-align: center;
+   top: 50%;
+   width: 400px;
+   border-radius: 15px;
+   font-style: italic;
+   
+   position: relative;
+  
+   margin: 0 auto; 
+}
+.image1{
+background-image: url("https://cdn.thegentlemansjournal.com/wp-content/uploads/2018/03/clubsheader-2502x1200-c-top.jpg");
+background-position:center;
+background-size: cover;
+background-repeat: no-repeat;
+
+width: 100%;
+height: 400px;
+  }
+  
+.container1{
+padding: 10px auto;
+ }
+
+hr.new2 {
+  border-top: 1px dashed black;
+}
+.maaz{
+color: black;
+font-size: 25px;
+
+}
+p{
+color: black;
+font-size: 15px;
+border-left: solid red;
+padding: 10px;
+margin: 15px;}
+
+
+{%endblock%}

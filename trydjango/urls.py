@@ -18,11 +18,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from trydjango.apps.pages.views import home_view, index_view
+from trydjango.apps.pages.views import club_view, index_view
 from trydjango.apps.yrb.views import shop_main
 admin.autodiscover()
 urlpatterns = [
-    path('', home_view, name='home'),
+    path('club/', club_view, name='club'),
     path('shop/', shop_main, name='shop'),
     path('index/', index_view, name='index'),
     path('admin/', admin.site.urls)

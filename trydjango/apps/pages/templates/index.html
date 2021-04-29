@@ -2,7 +2,7 @@
 {% load static %}
 <html lang="en">
   <head>
-   
+    
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,19 +14,21 @@
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css'%}">
 
     <!-- Bootstrap CSS -->
-
+    {%block head%}
+    {%endblock%}
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     
     <!-- Style -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     
-    <title>{% block title%}
+    <title>
+    {% block title%}
     {%endblock%}
     </title>
   </head>
   <body>
 
-    
+    <div class="hoop content1">
     <div class="site-mobile-menu">
       <div class="site-mobile-menu-header">
         <div class="site-mobile-menu-close mt-3">
@@ -42,13 +44,13 @@
         <div class="row align-items-center">
           
           <div class="col-11 col-xl-2">
-            <h1 class="mb-0 site-logo"><a href="" class="text-white mb-0">Brand</a></h1>
+            <h1 class="mb-0 site-logo"><a href="" class="text-white mb-0">York River Bookstore</a></h1>
           </div>
           <div class="col-12 col-md-10 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li class="active"><a href=""><span>Home</span></a></li>
+                <li><a href="{% url 'index' %}"><span>Home</span></a></li>
                 <li class="has-children">
                   <a href=""><span>Dropdown</span></a>
                   <ul class="dropdown arrow-top">
@@ -67,7 +69,7 @@
                   </ul>
                 </li>
                 <li><a href=""><span>Listings</span></a></li>
-                <li><a href=""><span>About</span></a></li>
+                <li><a href="{% url 'club' %}"><span>Clubs</span></a></li>
                 <li><a href=""><span>Blog</span></a></li>
                 <li><a href=""><span>Contact</span></a></li>
               </ul>
@@ -84,19 +86,36 @@
       
     </header>
     
-    <div class="hero" style="background-image: url({% static 'images/hero_1.jpg' %});"></div>
+    </div>
     
-{%block content%}
+    {%block content%}
     {% endblock %}
-
+    
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/jquery.sticky.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
+    
+    {%block script%} 
+    {%endblock%}
+   
   </body>
 
   <style>
-  
+  .content1{
+   padding: 20px 20px;
+   font-color: black;
+   
+ }
+.hoop
+{
+  background-color: black;
+    width: 100%;
+    height: 100px;
+
+  }
+  {%block style%}
+  {%endblock%}
   </style>
 </html>

@@ -7,16 +7,11 @@ from django.forms.models import model_to_dict
 
 
 
-
-
-def home_view(request):
+def club_view(request):
  
-  
   all_clubs=YrbClub.objects.all()
-  
   context={ 'all_clubs' : all_clubs}
-
- 
+  
   return render(request,'home.html', context )
 
 def index_view(request):
