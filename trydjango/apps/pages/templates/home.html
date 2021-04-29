@@ -1,4 +1,13 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 {% block title %}
    Home Page
+{% endblock %}
+
+{% block content%}
+<h1>Clubs:</h1>
+{% for club in all_clubs %}
+  <h1>{{club.club}}</h1>
+  <p>{{club.desp}}<p>
+  <span></span>
+{% endfor %}
 {% endblock %}

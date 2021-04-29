@@ -22,6 +22,7 @@ class YrbBook(models.Model):
         
         db_table = 'yrb_book'
         unique_together = (('title', 'year'),)
+    
 
 
 class YrbCategory(models.Model):
