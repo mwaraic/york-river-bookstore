@@ -14,18 +14,19 @@
         <p class="caption1">Clubs</p>  
         </div>
 </div> 
+<div class ="pad">
 {% for club in all_clubs %}
 <br><div class="container" > <hr class="new2">  
   <div class="row1 all-devices"><span class="badge btn maaz" data-toggle-target="#{{club.club|slugify}}" data-toggle-text"Read less" >> {{club.club}}</span>
   <div id="{{club.club|slugify}}"  class="panel panel-primary">
      <div>
-        <p>{{club.desp}}</p>
+        <p class="ace">{{club.desp}}</p>
       </div>
     </div>
   </div>
 </div>
 {% endfor %}
-  
+  </div>
 
 {% endblock %}
 {%block script%} 
@@ -80,6 +81,9 @@ body {
 
 .all-devices .toggle-target-expanded { display: block; }
 
+.pad{
+  padding: 50px 50px;
+}
 
 .caption1 {
    font-family: 'Playfair Display', serif;
@@ -118,7 +122,7 @@ color: black;
 font-size: 25px;
 
 }
-p{
+.ace{
 color: black;
 font-size: 15px;
 border-left: solid red;

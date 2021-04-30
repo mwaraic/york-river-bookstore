@@ -20,10 +20,12 @@ from django.contrib import admin
 from django.urls import path
 from trydjango.apps.pages.views import club_view, index_view
 from trydjango.apps.yrb.views import shop_main
+from trydjango.apps.account.views import club_create_view, account_login_view
 admin.autodiscover()
 urlpatterns = [
     path('club/', club_view, name='club'),
-    path('shop/', shop_main, name='shop'),
+    path('account_create/', club_create_view, name='account_create'),
+    path('account_login/', account_login_view, name='account_login'),
     path('index/', index_view, name='index'),
     path('admin/', admin.site.urls)
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

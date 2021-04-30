@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import os
+import os, sys
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'trydjango.apps.yrb',
-    'trydjango.apps.pages'
+    'trydjango.apps.pages',
+    'trydjango.apps.account'
 ]
 
 MIDDLEWARE = [
@@ -58,8 +59,7 @@ ROOT_URLCONF = 'trydjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(SETTINGS_PATH, 'templates'), 
-                 os.path.join(BASE_DIR, 'trydjango.apps.pages', 'templates', 'trydjango.apps.pages')],
+        'DIRS': [os.path.join(BASE_DIR, 'trydjango/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

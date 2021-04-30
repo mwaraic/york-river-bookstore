@@ -52,7 +52,7 @@
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="{% url 'index' %}"><span>Home</span></a></li>
                 <li class="has-children">
-                  <a href=""><span>Dropdown</span></a>
+                  <a href=""><span>Books</span></a>
                   <ul class="dropdown arrow-top">
                     <li><a href="#">Menu One</a></li>
                     <li><a href="#">Menu Two</a></li>
@@ -68,10 +68,11 @@
                     </li>
                   </ul>
                 </li>
-                <li><a href=""><span>Listings</span></a></li>
+                
                 <li><a href="{% url 'club' %}"><span>Clubs</span></a></li>
-                <li><a href=""><span>Blog</span></a></li>
-                <li><a href=""><span>Contact</span></a></li>
+                <li><a href=""><span>Cart</span></a></li>
+  
+                <li><a href="{% url 'account_login' %}"><span>Sign in</span></a></li>
               </ul>
             </nav>
           </div>
@@ -99,7 +100,10 @@
     
     {%block script%} 
     {%endblock%}
-   
+   <div class="footer">
+   <p>© 2021, York River Bookstore</p>
+    </div>
+
   </body>
 
   <style>
@@ -113,8 +117,21 @@
   background-color: black;
     width: 100%;
     height: 100px;
-
+ 
   }
+  .footer {
+  position: relative;
+  padding: 20px 20px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  
+  
+}
+  
   {%block style%}
   {%endblock%}
   </style>
