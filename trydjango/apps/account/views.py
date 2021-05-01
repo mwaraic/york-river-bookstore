@@ -1,6 +1,7 @@
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render
-from passlib.hash import bcrypt, md5_crypt
-from .forms import ClubForm, login_auth
+from .forms import ClubForm
+
 # Create your views here.
 
 def club_create_view(request):
@@ -19,11 +20,19 @@ def club_create_view(request):
 
 def account_login_view(request):
  
-  if request.POST or None:
-    text1 = request.POST.get('username','')
-    text2 = request.POST.get('password','')
-    Boolean= login_auth(text1,text2)
-    if(Boolean==False):
-       return render(request, 'account/account_login.html', {'error':'Incorrect username or password'})
-  return render(request, 'account/account_login.html', {})    
+  if request.method=='POST':
+      username=request.POST.get('username')
+      password=request.POST.get('password')
+      
+      user=authenticate(request, username=username, password=password)
+      if user is not None:
+          login(request, user)
+          return redirect('home')
+    
+  context={}
+  return render(request, 'account/account_login.html', context)  
+
+def logoutUser(request):
+    logout(request)
+    return redirect('account_login')
     

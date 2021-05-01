@@ -50,7 +50,7 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="{% url 'index' %}"><span>Home</span></a></li>
+                <li><a href=""><span>Home</span></a></li>
                 <li class="has-children">
                   <a href=""><span>Books</span></a>
                   <ul class="dropdown arrow-top">
@@ -71,8 +71,15 @@
                 
                 <li><a href="{% url 'club' %}"><span>Clubs</span></a></li>
                 <li><a href=""><span>Cart</span></a></li>
-  
+                {% if request.user.is_authenticated %}
+                <li class="has-children">
+                 <a href="{% url 'home' %}"><span>Hi {{request.user}}</span></a>
+                  <ul class="dropdown arrow-top">
+                    <li><a href="{% url 'logout' %}">Log out</a></li></li></ul>
+                {%else%}
+                
                 <li><a href="{% url 'account_login' %}"><span>Sign in</span></a></li>
+                {% endif%}
               </ul>
             </nav>
           </div>
