@@ -9,14 +9,14 @@
 {% endblock %}
 
 {% block content%}
-<div class="container1">
+
     <div class="image1">  
         <p class="caption1">Clubs</p>  
         </div>
-</div> 
-<div class ="pad">
+
+
 {% for club in all_clubs %}
-<br><div class="container" > <hr class="new2">  
+<br><div class="container"> <hr class="new2">  
   <div class="row1 all-devices"><span class="badge btn maaz" data-toggle-target="#{{club.club|slugify}}" data-toggle-text"Read less" >> {{club.club}}</span>
   <div id="{{club.club|slugify}}"  class="panel panel-primary">
      <div>
@@ -26,7 +26,7 @@
   </div>
 </div>
 {% endfor %}
-  </div>
+
 
 {% endblock %}
 {%block script%} 
@@ -110,9 +110,7 @@ width: 100%;
 height: 400px;
   }
   
-.container1{
-padding: 10px auto;
- }
+
 
 hr.new2 {
   border-top: 1px dashed black;

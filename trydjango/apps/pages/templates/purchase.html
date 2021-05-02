@@ -1,0 +1,35 @@
+{% extends 'dashboard.html' %}
+
+
+{% block local_content %}
+
+<div class="content-panel ">
+<table class=" content table table-hover table-dark">
+    <thead>
+        <tr>
+            <!-- Your Columns HERE -->
+            <th scope="col">#</th>
+            <th scope="col">Club</th>
+            <th scope="col">Book title</th>
+            <th scope="col">Publish year</th>
+            <th scope="col">Date purchased</th>
+            <th scope="col">Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Your rows inside the table HERE: -->
+        {%for purchase in all_purchases%}
+            <tr>
+                <td>{{purchase.index}}</td>
+                <td>{{ purchase.club}}</td>
+                <td>{{ purchase.title }}</td>
+                <td>{{ purchase.year }}</td>
+                <td>{{ purchase.whenp}}</td>
+                <td>{{ purchase.qnty}}</td>
+                
+            </tr>
+ {%endfor%}
+ </div>
+
+
+ {% endblock %}

@@ -1,45 +1,57 @@
-{% extends 'index.html' %}
-{% block title %}
-   Profile Page
-{% endblock %}
-{% block content %}
+{% extends 'dashboard.html' %}
 
-<div class="container">
-<h1>Hi {{request.user}}</h1>
-</div>
 
-<div class="container">
-<table class="table table-hover table-dark">
-    <thead>
-        <tr>
-            <!-- Your Columns HERE -->
-            
-            <th scope="col">Club</th>
-            <th scope="col">Title</th>
-            <th scope="col">Year</th>
-            <th scope="col">Date</th>
-            <th scope="col">Quantity</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Your rows inside the table HERE: -->
-        {% for purchase in all_purchases %}
-            <tr>
-                
-                <td>{{ purchase.club }}</td>
-                <td>{{ purchase.title }}</td>
-                <td>{{ purchase.year }}</td>
-                <td>{{ purchase.whenp}}</td>
-                <td>{{purchase.qnty}}</td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
-</div>
+ {% block local_content %}
+ {%for customer in customer%}
+ <div class="content-panel">
+                    <h2 class="title text-center">Profile</h2>
+                    <form class="form-horizontal">
+                        <fieldset class="fieldset">
+                            <h3 class="fieldset-title bolder">Personal Info</h3>
+                            
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Username</label>
+                                <div class="col-md-10 col-sm-9 col-xs-12 ">
+                                    <input type="text" class="form-control" value="{{request.user}}">
+                                </div>
+                            </div>
+        
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-3 col-xs-12 control-label">First Name</label>
+                                <div class="col-md-10 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" value="{{customer.first_name}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Last Name</label>
+                                <div class="col-md-10 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" value="{{customer.last_name}}">
+                                </div>
+                            </div>
+                        </fieldset>
+                        <br>
+                        <fieldset class="fieldset">
+                            <h3 class="fieldset-title">Contact Info</h3>
+                            <div class="form-group">
+                                <label class="col-md-2  col-sm-3 col-xs-12 control-label">City</label>
+                                <div class="col-md-10 col-sm-9 col-xs-12">
+                                    <input type="email" class="form-control" value="{{customer.city}}">
+                                    
+                                </div>
+                            </div>
+                        
+                        </fieldset>
+                        <hr>
+                        
+                        <div class="form-group ">
+                            <div class="text-center">
+                                <input class="btn btn-primary" type="submit" value="Update Profile">
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+                {% endfor%}
+ {% endblock %}
 
-{% endblock %}
-
-{% block style%}
-  
-
-{% endblock%}
+ 

@@ -2,16 +2,13 @@
 
 
 {%block content %}
-<div class="container1">
+
 <form method='POST'>{% csrf_token %}
 {{form.as_p}}
 <input type='submit' value='Save' />
-</form></div>
+</form>
 {%endblock %}
 
 {%block style%}
-.container1{
-height: 100%;
-align-content: center;
-}
+
 {%endblock%}

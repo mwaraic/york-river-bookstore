@@ -18,7 +18,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from trydjango.apps.pages.views import club_view, index_view, home_view
+from trydjango.apps.pages.views import club_view, index_view, home_view, profile_view
 from trydjango.apps.yrb.views import shop_main
 from trydjango.apps.account.views import club_create_view, account_login_view, logoutUser
 admin.autodiscover()
@@ -26,7 +26,8 @@ urlpatterns = [
     path('club/', club_view, name='club'),
     path('account_create/', club_create_view, name='account_create'),
     path('account_login/', account_login_view, name='account_login'),
-    path('profile/', home_view, name='home'),
+    path('account/purchase/', home_view, name='purchase'),
+    path('account/profile/', profile_view, name='home'),
     path('logout/', logoutUser, name="logout"),
     path('admin/', admin.site.urls)
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -5986,6 +5986,10 @@ a.badge-dark:focus, a.badge-dark.focus {
   border-color: #721c24;
 }
 
+.container1{
+  height: 100%;
+  align-content: center;
+  }
 .list-group-item-light {
   color: #818182;
   background-color: #fdfdfe;
