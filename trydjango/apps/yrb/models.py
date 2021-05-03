@@ -79,7 +79,7 @@ class YrbOffer(models.Model):
 
 class YrbPurchase(models.Model):
     cid = models.SmallIntegerField(primary_key=True)
-    club = models.ForeignKey(YrbMember, models.DO_NOTHING, db_column='club')
+    club = models.ForeignKey(YrbClub, models.DO_NOTHING, db_column='club')
     title = models.CharField(max_length=25)
     year = models.SmallIntegerField()
     whenp = models.DateTimeField()

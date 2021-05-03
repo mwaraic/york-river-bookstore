@@ -35,3 +35,18 @@ Cart:
 Views:
 
 Cart
+
+Analysis:
+
+Total amount spend per Club (pie chart)
+
+purchase time gap (line graph)
+
+Notification:
+
+Recommendations
+
+Reminder to buy after fixed period of time
+
+
+

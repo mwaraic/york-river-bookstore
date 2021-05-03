@@ -1,0 +1,18 @@
+{% extends 'dashboard.html' %}
+
+
+ {% block local_content %}
+ 
+ <div class="content-panel">
+ <h2 style="margin-top: 0">Your Clubs</h2>
+ <ul class="list-group">{%for club in all_clubs%}
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    {{club.club}}
+    <span class="badge badge-primary badge-pill">{{club.count}}</span> </li>
+  {% endfor%}
+ 
+</ul>
+ </div>
+                
+                
+ {% endblock %}

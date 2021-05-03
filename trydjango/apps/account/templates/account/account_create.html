@@ -1,14 +1,155 @@
-{% extends 'index.html'%}
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css'%}">
 
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css'%}">
 
-{%block content %}
+    <!-- Bootstrap CSS -->
+    
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <title>
+    
+    </title>
+  </head>
+  <body>
 
-<form method='POST'>{% csrf_token %}
-{{form.as_p}}
-<input type='submit' value='Save' />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+         <div class="container2">  <h1 class="mb-0 text-center site-logo">York River Bookstore</h1></div>
+          
+<div class="container2">
+<div class="card">
+<article class="card-body mx-auto">
+	<h4 class="card-title mt-3 text-center">Create Account</h4>
+    
+	<p class="divider-text">
+        <span></span>
+    </p>
+	
+	
+
+    <form method="POST">
+    
+	<div class="form-group input-group">
+		<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+		 </div>
+        {{form.username}}
+    </div> <!-- form-group// -->
+    <dl style="color:red"></dl>
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-circle"></i> </span>
+		 </div>
+        {{form.first_name}}
+    </div> <!-- form-group// -->
+    <dl style="color:red"></dl>
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-circle"></i> </span>
+		 </div>
+        {{form.last_name}}
+        </div> <!-- form-group// -->
+    <dl style="color:red"></dl>
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-address-book"></i> </span>
+		 </div>
+        {{form.city}}
+    </div>    
+    <!-- form-group// -->
+    <dl style="color:red"></dl>
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+		</div>
+       {{form.password}}
+    </div> <!-- form-group// -->
+    <dl style="color:red" ></dl>
+    <div class="form-group input-group">
+    	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+		</div>
+        {{form.repeatpass}}  
+   
+    </div> <!-- form-group// --> 
+    <dl style="color:red"></dl>
+                                         
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+    </div> <!-- form-group// -->      
+    <p class="text-center">Have an account? <a href="{% url 'account_login'%}">Sign In</a> </p>                                                                 
 </form>
-{%endblock %}
+</article>
+</div>
+</div> <!-- card.// -->
+<div class="footer">
+    <span>© 2021, York River Bookstore</span>
+    </div>
+</body>
+<style>
 
-{%block style%}
+body
+{
+    height:100%;
+    
+}
 
-{%endblock%}
+.footer{
+    background-color: white;
+    font-color:black;
+    padding: 20px;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+    position: relative;
+    
+}
+.divider-text {
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    
+}
+.divider-text span {
+    padding: 7px;
+    font-size: 12px;
+    position: relative;   
+    z-index: 2;
+    
+}
+ 
+.divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    top: 55%;
+    left: 0;
+    z-index: 1;
+   
+}
+.container2 { 
+  margin: auto;
+  padding: 10px;
+  width: 50%;
+  
+}
+
+</style>
+</html>

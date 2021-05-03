@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'trydjango.apps.yrb',
     'trydjango.apps.pages',
-    'trydjango.apps.account'
+    'trydjango.apps.account',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
