@@ -8,18 +8,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    
-    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css'%}">
+    <link rel="stylesheet" href="{% static '/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static '/fonts/icomoon/style.css'%}">
 
-    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css'%}">
+    <link rel="stylesheet" href="{% static '/css/owl.carousel.min.css'%}">
 
     <!-- Bootstrap CSS -->
     {%block head%}
     {%endblock%}
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
     
     <!-- Style -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
     
     <title>
     {% block title%}
@@ -75,7 +75,11 @@
                 <li class="has-children">
                  <a href="{% url 'home' %}"><span>Hello, {{request.user}}</span></a>
                   <ul class="dropdown arrow-top">
-                    <li><a href="{% url 'logout' %}">Log out</a></li></li></ul>
+                    <li><a href="{% url 'home' %}"><span class="fa fa-user"></span> Profile</a></li>
+                    <li><a href="{% url 'clubs' %}"><span class="fa fa-users"> Clubs</a></li>
+                    <li><a href="{% url 'purchase' %}"><span class="fa fa-shopping-cart"></span> Purchases</a></li>
+                    <li><a href="{% url 'logout' %}"><span class="fa fa-sign-out"> Sign out</a></li>
+                    </li></ul>
                 {%else%}
                 
                 <li><a href="{% url 'account_login' %}"><span>Sign in</span></a></li>
@@ -99,11 +103,11 @@
     {%block content%}
     {% endblock %}
     </div>
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/jquery.sticky.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static '/js/popper.min.js' %}"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/js/jquery.sticky.js' %}"></script>
+    <script src="{% static '/js/main.js' %}"></script>
     
     {%block script%} 
     {%endblock%}
