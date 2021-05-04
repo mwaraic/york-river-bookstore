@@ -42,7 +42,10 @@ INSTALLED_APPS = [
     'trydjango.apps.yrb',
     'trydjango.apps.pages',
     'trydjango.apps.account',
-    'widget_tweaks'
+    'widget_tweaks',
+    'django_filters',
+    'tempus_dominus',
+    'daterange_filter'
 ]
 
 MIDDLEWARE = [
