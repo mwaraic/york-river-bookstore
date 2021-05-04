@@ -40,30 +40,30 @@
     </p>
 	
 	
-
-    <form method="POST">
     
+    <form method="POST">
+    {% csrf_token %}
 	<div class="form-group input-group">
 		<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 		 </div>
         {{form.username}}
     </div> <!-- form-group// -->
-    <dl style="color:red"></dl>
+    
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-circle"></i> </span>
 		 </div>
         {{form.first_name}}
     </div> <!-- form-group// -->
-    <dl style="color:red"></dl>
+    
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-circle"></i> </span>
 		 </div>
         {{form.last_name}}
         </div> <!-- form-group// -->
-    <dl style="color:red"></dl>
+   
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-address-book"></i> </span>
@@ -71,14 +71,14 @@
         {{form.city}}
     </div>    
     <!-- form-group// -->
-    <dl style="color:red"></dl>
+    
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 		</div>
        {{form.password}}
     </div> <!-- form-group// -->
-    <dl style="color:red" ></dl>
+    
     <div class="form-group input-group">
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
@@ -86,13 +86,30 @@
         {{form.repeatpass}}  
    
     </div> <!-- form-group// --> 
-    <dl style="color:red"></dl>
-                                         
+    
+    {% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <ul>
+                <li style="color:red">{{ error|escape }}</li>
+           </ul>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+          <ul>
+                <li style="color:red">{{ error|escape }}</li>
+           </ul>
+    {% endfor %}
+{% endif %}
+
+    
+                                       
     <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
     </div> <!-- form-group// -->      
     <p class="text-center">Have an account? <a href="{% url 'account_login'%}">Sign In</a> </p>                                                                 
 </form>
+
 </article>
 </div>
 </div> <!-- card.// -->

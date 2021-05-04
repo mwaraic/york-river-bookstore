@@ -48,7 +48,8 @@
 			</div>
 			
 			<div class="card-footer">
-			<div style="color:red" class="d-flex justify-content-center">{{error}}</div> 
+			{% for message in messages %}
+			<div class="d-flex justify-content-center"><mark>{{ message }}</mark></div> {% endfor %} 
 				<div class="d-flex justify-content-center links">
 					Don't have an account?<a href="{% url 'account_create' %}">Sign Up</a>
 				</div>
@@ -66,7 +67,10 @@
 
 {% block style %}
 @import url('https://fonts.googleapis.com/css?family=Numans');
-
+mark{
+ background-color:red;
+ color: white;
+}
 html,body{
 
 height: 100%;
