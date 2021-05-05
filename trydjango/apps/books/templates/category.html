@@ -12,7 +12,7 @@ Category Page
 {% block content%}
 
 
-<div class="container mt-3"><br>
+<br><div class="container mt-3">
 <h3 class="text-center">CHOOSE A CATEGORY</h3><hr>
     
     <div class="row">
@@ -23,19 +23,17 @@ Category Page
                 <div class="card-body text-center"> <h5>Philosophy</h5>
                 </div>
                 {% else %}
-                <div class="card-body text-center"> <h5>{{category.cat}}</h5><a href="{% url 'account_login' %}" class="stretched-link"></a>
+                <div class="card-body text-center"> <h6>{{category.cat}}</h6><a href="{% url 'account_login' %}" class="stretched-link"></a>
                 </div>
                 {% endif %}
             </div>
         </div>
         {%endfor%}
-    </div> <hr>
-    <div class="d-flex align-items-center justify-content-between py-4 results">
-        
     </div>
     
     
-</div>
+    
+</div><br>
 {% endblock %}
 
 {%block style%}
@@ -92,12 +90,14 @@ a.custom-card:hover {
     transition: all 0.4s ease-in-out
 }
 
+
 img {
     
-    width: 150px;
-    height: 220px;
+    width: 120px;
+    height: 120px;
     object-fit: contain;
     padding-top: 10px
+   
 }
 
 .card-body {
