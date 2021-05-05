@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_filters',
     'tempus_dominus',
-    'daterange_filter'
+    'daterange_filter',
+    'trydjango.apps.books'
 ]
 
 MIDDLEWARE = [
@@ -112,7 +113,15 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+from django.contrib.messages import constants as messages
 
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

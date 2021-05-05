@@ -19,17 +19,18 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from trydjango.apps.pages.views import club_view, index_view, home_view, profile_view, clubs_view
-from trydjango.apps.yrb.views import shop_main
+from trydjango.apps.books.views import category_view
 from trydjango.apps.account.views import account_create_view, account_login_view, logoutUser
 admin.autodiscover()
 urlpatterns = [
     path('club/', club_view, name='club'),
     path('account_create/', account_create_view, name='account_create'),
-    path('account_login/', account_login_view, name='account_login'),
+    path('account_login/', account_login_view, name='account_login'), 
+    path('logout/', logoutUser, name="logout"),
     path('account/purchase/', home_view, name='purchase'),
     path('account/profile/', profile_view, name='home'),
     path('account/clubs/', clubs_view, name='clubs'),
-    path('logout/', logoutUser, name="logout"),
+    path('books/',category_view, name='category' ),
     path('admin/', admin.site.urls)
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

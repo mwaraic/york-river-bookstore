@@ -7,6 +7,7 @@ from trydjango.apps.yrb.dbpostgres import dictfetchall
 import psycopg2
 from django.contrib.auth.decorators import login_required
 from .filters import PurchaseFilter
+import datetime
 # Create your views here.
 
 
@@ -29,12 +30,13 @@ def home_view(request):
   with psycopg2.connect("dbname='YRB' user='postgres' host='127.0.0.1' port='5432' password='maaz'") as connection:
    with connection.cursor() as cursor:
     cursor.execute("SELECT (ROW_NUMBER () OVER (ORDER BY whenp asc)) as index, club, title, year, whenp, qnty FROM Yrb_purchase WHERE cid = %s order by index desc", [request.user.id])
-   
+    
     all_purchases=dictfetchall(cursor)
     purchase_filter = PurchaseFilter(request.GET, queryset=YrbPurchase.objects.filter(cid=request.user.id))
     context={ 'all_purchases' : all_purchases,
               'nbar': 'purchase',
-              'filter': purchase_filter
+              'filter': purchase_filter,
+              'year': datetime.datetime.now().year
              }
     
     return render(request, 'purchase.html', context)
@@ -57,7 +59,7 @@ def clubs_view(request):
    with connection.cursor() as cursor:
     cursor.execute("SELECT yrb_member.club, count(yrb_purchase.club) from yrb_purchase, yrb_member where yrb_purchase.club= yrb_member.club and yrb_purchase.cid=yrb_member.cid and yrb_purchase.cid= %s group by yrb_member.club order by yrb_member.club;", [request.user.id])
     all_clubs=dictfetchall(cursor)
-    print(all_clubs)
+  
     if all_clubs == []:
        
        cursor.execute("SELECT distinct(yrb_member.club) from yrb_member where yrb_member.cid= %s order by yrb_member.club;", [request.user.id])

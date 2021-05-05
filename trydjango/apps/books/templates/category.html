@@ -1,0 +1,155 @@
+{% extends 'index.html' %}
+
+{%block head%}
+<link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+<link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+{%endblock%}
+{% block title%}
+Category Page
+{%endblock%}
+{% block content%}
+
+
+<div class="container mt-3"><br>
+<h3 class="text-center">CHOOSE A CATEGORY</h3><hr>
+    
+    <div class="row">
+    {%for category in all_categories %}
+      <div class="col-lg-3 col-md-6 offset-md-0 offset-sm-1 col-sm-10 offset-sm-1 my-lg-0 my-2">
+       <div class="card"> <img class="card-img-top" src="/static/images/cat/{{category.index}}.jpg">
+                {% if category.cat == "Phil" %}
+                <div class="card-body text-center"> <h5>Philosophy</h5>
+                </div>
+                {% else %}
+                <div class="card-body text-center"> <h5>{{category.cat}}</h5><a href="{% url 'account_login' %}" class="stretched-link"></a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {%endfor%}
+    </div> <hr>
+    <div class="d-flex align-items-center justify-content-between py-4 results">
+        
+    </div>
+    
+    
+</div>
+{% endblock %}
+
+{%block style%}
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    
+    height:100%;
+}
+h2 {text-align: center;}
+
+.results {
+    font-weight: 600
+}
+
+select {
+    border: none;
+    outline: none;
+    padding: 0px 4px;
+    cursor: pointer;
+    background: inherit
+}
+
+a.custom-card,
+a.custom-card:hover {
+  color: inherit;
+}
+
+.card {
+    border: none;
+    cursor: pointer
+    
+}
+.stretched-link::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: auto;
+    content: "";
+    background-color: rgba(0,0,0,0);
+}
+.card:hover {
+    transform: scale(1.08);
+    transition: all 0.4s ease-in-out
+}
+
+img {
+    
+    width: 150px;
+    height: 220px;
+    object-fit: contain;
+    padding-top: 10px
+}
+
+.card-body {
+    padding: 0.5rem;
+    padding-top: 0.7rem;
+    padding-right: 0.2rem
+   
+}
+
+.fa-heart {
+    font-size: 1.2rem
+}
+
+.h6 {
+    margin: 0
+    
+}
+
+.btn {
+    padding-top: 0
+    
+}
+
+.btn:hover {
+    color: red;
+}
+
+div.text-muted {
+    font-size: 0.9rem
+}
+
+@media(max-width:372px) {
+    .results {
+        font-size: 0.9rem
+    }
+}
+
+@media(max-width:330px) {
+    .results {
+        font-size: 0.85rem
+    }
+}
+
+@media(min-height: 700px) {
+    body {
+        height: 100vh
+    }
+}
+
+@media(max-width:768px) {
+    body {
+        height: 100%
+    }
+}
+{% endblock%}

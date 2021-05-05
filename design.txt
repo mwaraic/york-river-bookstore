@@ -2,45 +2,59 @@ Books:
 
 Views:
 
-Shop_main
+Shop_main - Book categories - Genre and Club Offerings 
 
-Shop_product_list
+Shop_product_list - Book list by category
+
+Shop_product <name> - Book display
+
 
 Account:
 
 Views:
 
-Account_login
+-Account_login
 
-Account_create
+-Account_create
 
-Profile
 
-Purchase
+Dashboard:
 
-Clubs
+Views:
 
-Billing
+-Profile
+
+-Purchase
+
+-Clubs
+
+-Billing
+
+-Favourites
 
 
 Clubs:
 
 Views:
 
-Clubs_desc
+-Clubs_desc
 
 
 Cart:
 
 Views:
 
-Cart
+Cart - Books in cart 
+
+
+Home:
 
 Analysis:
 
 Total amount spend per Club (pie chart)
 
 purchase time gap (line graph)
+
 
 Notification:
 

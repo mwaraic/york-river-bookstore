@@ -52,7 +52,7 @@
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href=""><span>Home</span></a></li>
                 <li class="has-children">
-                  <a href=""><span>Books</span></a>
+                  <a href="{% url 'category' %}"><span>Books</span></a>
                   <ul class="dropdown arrow-top">
                     <li><a href="#">Menu One</a></li>
                     <li><a href="#">Menu Two</a></li>
@@ -99,7 +99,9 @@
     </header>
     
     </div>
+    
     <div class="container1">
+    {% include 'messages.html' %}
     {%block content%}
     {% endblock %}
     </div>
