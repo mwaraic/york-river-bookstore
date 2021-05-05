@@ -12,7 +12,7 @@ Category Page
 {% block content%}
 
 
-<br><div class="container mt-3">
+<div class="container mt-3"><br>
 <h3 class="text-center">CHOOSE A CATEGORY</h3><hr>
     
     <div class="row">
@@ -23,28 +23,24 @@ Category Page
                 <div class="card-body text-center"> <h5>Philosophy</h5>
                 </div>
                 {% else %}
-                <div class="card-body text-center"> <h6>{{category.cat}}</h6><a href="{% url 'account_login' %}" class="stretched-link"></a>
+                <div class="card-body text-center"> <h5>{{category.cat}}</h5><a href="{% url 'account_login' %}" class="stretched-link"></a>
                 </div>
                 {% endif %}
             </div>
         </div>
         {%endfor%}
+    </div> 
+    <div class="d-flex align-items-center justify-content-between py-4 results">
+        
     </div>
     
     
-    
-</div><br>
+</div>
 {% endblock %}
 
 {%block style%}
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
 
 body {
     
@@ -90,14 +86,12 @@ a.custom-card:hover {
     transition: all 0.4s ease-in-out
 }
 
-
 img {
     
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
     padding-top: 10px
-   
 }
 
 .card-body {
