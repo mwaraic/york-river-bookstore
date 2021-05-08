@@ -5,6 +5,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <!------ Include the above in your HEAD tag ---------->
 {%endblock%}
 {% block title%}
@@ -13,7 +14,11 @@ Booklist Page
 {% block content%}
 <section class="jumbotron text-center">
     <div class="container">
+    {% if cat == "Phil" %}
+        <h1 class="jumbotron-heading">Philosophy</h1>
+    {% else %}
         <h1 class="jumbotron-heading">{{cat|title}}</h1>
+    {% endif %}
     </div>
 </section>
 <div class="container">
@@ -21,8 +26,8 @@ Booklist Page
         <div class="col">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a class="text-dark" href="{% url 'books:super' %}">Club</a></li>
-                    <li class="breadcrumb-item"><a class="text-dark" href="{% url 'books:category' club %}">Category</a></li>
+                    <li class="breadcrumb-item"><a class="text-dark" href="{% url 'books:super' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a class="text-dark" href="{% url 'books:category' club %}">{{club}}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{cat|title}}</li>
                 </ol>
             </nav>
@@ -37,24 +42,28 @@ Booklist Page
                 <div class="card-header bg-dark text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
                 <ul class="list-group category_block">
                 {%for category in all_categories%}
-                    <li class="list-group-item"><a href="{% url 'books:booklist' club category.cat %}"class="stretched-link custom-card">{{category.cat|title}}</a></li>
+                {% if category.cat == "Phil"%}
+                <li class="list-group-item"><a href="{% url 'books:booklist' club category.cat %}"class="stretched-link custom-card">Philosophy</a></li>
+                {% else %}
+                <li class="list-group-item"><a href="{% url 'books:booklist' club category.cat %}"class="stretched-link custom-card">{{category.cat|title}}</a></li>
+                {% endif %}
                 {% endfor %}
                 </ul>
             </div>
             <div class="card bg-light mb-3">
                 <div class="card-header bg-dark text-white text-uppercase"><i class="fa fa-filter"></i> Filter</div>
                 <div class="card-body">
-                
+           
                 </div>
             </div>
         </div>
         <div class="col">
         <div class="d-flex align-items-center justify-content-between py-4 results" >
         <div></div>
-        <div><form method="get">{% render_field filterset.form.price %} <button type="submit" class="btn btn-primary">
-        <span class="glyphicon glyphicon-search"></span> Filter
-      </button></form></div>
+        <div><form method="get">{% render_field filterset.form.price class="form-control" onChange="form.submit();"%}</form>
+        </div>
     </div>
+   
             <div class="row">
                 {% for object in object_list%}
                 <div class="col-md-4 col-sm-6 col-12 mt-4">
@@ -156,9 +165,9 @@ a.custom-card:hover {
     background-color:white;
     border: none;
     cursor: pointer;
-    
-    
 }
+
+
 .stretched-link::after {
     position: absolute;
     top: 0;

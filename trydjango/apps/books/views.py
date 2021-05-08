@@ -1,18 +1,9 @@
-from django.db.models.query import QuerySet
 from django.shortcuts import render
-import django_filters
-from trydjango.apps.yrb.models import YrbBook, YrbClub, YrbOffer
 from trydjango.apps.yrb.dbpostgres import dictfetchall
 import psycopg2
-from django.urls import reverse
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .forms import BookForm
 from .filters import PriceFilter, FilteredListView
-from django.views.generic import ListView
 
 # Create your views here.
-
-
 
 def super_category_view(request):
   with psycopg2.connect("dbname='YRB' user='postgres' host='127.0.0.1' port='5432' password='maaz'") as connection:

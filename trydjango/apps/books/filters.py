@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.forms import fields, widgets
+from django.utils.functional import empty
 import django_filters 
 from django_filters.filters import NumberFilter
 from trydjango.apps.yrb.models import YrbClub, YrbMember, YrbOffer, YrbPurchase
@@ -12,7 +13,7 @@ class PriceFilter(django_filters.FilterSet):
     
     price= django_filters.OrderingFilter(fields=(
            ('title', 'title'), ('price', 'price'),
-        ),
+        ), empty_label="Featured",
         # labels do not need to retain order
         field_labels={
            'title': 'Sort by name | A to Z', '-title':'Sort by name | Z to A', 'price': 'Sort by price | low to high', '-price':'Sort by price | high to low', 
