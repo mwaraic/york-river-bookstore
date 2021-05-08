@@ -2,7 +2,7 @@ Books:
 
 Views:
 
-Shop_main - Book categories - Genre and Club Offerings 
+Shop_main - Book categories
 
 Shop_product_list - Book list by category
 

@@ -17,9 +17,9 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from trydjango.apps.pages.views import club_view, index_view, home_view, profile_view, clubs_view
-from trydjango.apps.books.views import category_view
+from trydjango.apps.books.views import category_view, super_category_view
 from trydjango.apps.account.views import account_create_view, account_login_view, logoutUser
 admin.autodiscover()
 urlpatterns = [
@@ -30,7 +30,7 @@ urlpatterns = [
     path('account/purchase/', home_view, name='purchase'),
     path('account/profile/', profile_view, name='home'),
     path('account/clubs/', clubs_view, name='clubs'),
-    path('books/',category_view, name='category' ),
+    path('books/',include('trydjango.apps.books.urls',namespace="books")),
     path('admin/', admin.site.urls)
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

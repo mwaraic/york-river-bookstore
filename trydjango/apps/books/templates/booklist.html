@@ -1,0 +1,289 @@
+{% extends 'index.html' %}
+ {% load widget_tweaks %}
+ {% load my_tags%}
+{%block head%}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+{%endblock%}
+{% block title%}
+Booklist Page
+{%endblock%}
+{% block content%}
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">{{cat|title}}</h1>
+    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a class="text-dark" href="{% url 'books:super' %}">Club</a></li>
+                    <li class="breadcrumb-item"><a class="text-dark" href="{% url 'books:category' club %}">Category</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{cat|title}}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-3 mt-4" style="min-width: 200px;">
+            <div class="card bg-light mb-3">
+                <div class="card-header bg-dark text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
+                <ul class="list-group category_block">
+                {%for category in all_categories%}
+                    <li class="list-group-item"><a href="{% url 'books:booklist' club category.cat %}"class="stretched-link custom-card">{{category.cat|title}}</a></li>
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="card bg-light mb-3">
+                <div class="card-header bg-dark text-white text-uppercase"><i class="fa fa-filter"></i> Filter</div>
+                <div class="card-body">
+                
+                </div>
+            </div>
+        </div>
+        <div class="col">
+        <div class="d-flex align-items-center justify-content-between py-4 results" >
+        <div></div>
+        <div><form method="get">{% render_field filterset.form.price %} <button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-search"></span> Filter
+      </button></form></div>
+    </div>
+            <div class="row">
+                {% for object in object_list%}
+                <div class="col-md-4 col-sm-6 col-12 mt-4">
+                    <div class="card h-100"> <img class="card-img-top" src="/static/images/logo1.jpg">
+                        <div class="card-body">
+                            <h5 class="card-title">{{object.title.title}}</h5>
+                            <p class="card-text">Club: {{object.club.club}}<br> Publish Year: {{object.year}} </p>
+                            <div class="row">
+                                <div class="col">
+                                   <span class="txt-top">&dollar;</span><span class="txt-l">{{object.price}}</span>
+                                </div>
+                        
+                            </div>
+                        </div>
+                    </div>
+                </div>{% endfor %}
+                
+                <div class="col-12">
+                    <nav aria-label="...">
+                    {% if is_paginated %}
+                    {% if page_obj.has_other_pages%}
+                        <ul class="pagination">
+                           {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?{% url_replace request 'page' page_obj.previous_page_number %}" tabindex="-1">Previous</a>
+                            </li>
+                            {% endif %}
+                            {% for i in page_obj.paginator.page_range %}
+                            {% if page_obj.number == i %}
+    
+                            <li class="page-item active ">
+                                <a class="page-link" href="#">{{i}} <span class="sr-only">(current)</span></a>
+                            </li>
+                            {% else %}
+                            <li class="page-item"><a class="page-link" href="?{% url_replace request 'page' i %}">{{i}}</a></li>
+                            {% endif %}
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                            <li class="page-item">
+                            <a class="page-link" href="?{% url_replace request 'page' page_obj.next_page_number %}">Next</a>
+                            </li>
+                            
+                            {% endif %}
+                        </ul>
+                        {% endif %}
+                        {% endif %}
+                    </nav>
+                </div>
+                <br>
+            </div>
+        </div>
+
+    </div>
+</div>
+               
+{% endblock %}
+
+
+{%block style%}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+.card-title,h5, .card-text, .txt-top, .txt-1{
+   
+} 
+.txt-l { font-size:20px; }
+.txt-top { position:relative; top:-9px; left:-2px; 
+}
+body {
+    
+    height:100%;
+}
+ h2 {text-align: center;}
+
+.results {
+    font-weight: 600
+}
+
+
+.form-select {
+    
+    outline: none;
+    padding: 10px 4px;
+    cursor: pointer;
+    background: inherit
+}
+
+.card {
+  border: 1px solid transparent;
+  -webkit-box-shadow: 0 3px 7px 0 #a8a8a8;
+  -moz-box-shadow: 0 3px 7px 0 #a8a8a8;
+  box-shadow: 0 3px 7px 0 #a8a8a8;
+}
+a.custom-card,
+a.custom-card:hover {
+  color: inherit;
+}
+
+.card {
+    background-color:white;
+    border: none;
+    cursor: pointer;
+    
+    
+}
+.stretched-link::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: auto;
+    content: "";
+    background-color: rgba(0,0,0,0);
+}
+
+
+img {
+    
+    object-fit: contain;
+    
+}
+
+.card-body {
+    padding: 0.5rem;
+    padding-top: 0.7rem;
+    padding-right: 0.2rem
+}
+
+.fa-heart {
+    font-size: 1.2rem
+}
+
+.h6 {
+    margin: 0
+    
+}
+
+
+
+div.text-muted {
+    font-size: 0.9rem
+}
+
+
+.pagination > li > a
+{
+    background-color: white;
+    color: #343a40 ;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: #343a40  ;
+    background-color: #eee;
+    border-color: #ddd;
+}
+.pagination > .active > a
+{
+    color: white;
+    background-color: #343a40 !Important;
+    border: solid 1px #5A4181 !Important;
+}
+
+.pagination > .active > a:hover
+{
+    background-color: #343a40 !Important;
+    border: solid 1px #5A4181;
+}
+select {
+    border: none;
+    outline: none;
+    padding: 0px 4px;
+    cursor: pointer;
+    background: inherit
+}
+
+.bloc_left_price {
+    color: #c01508;
+    text-align: center;
+    font-weight: bold;
+    font-size: 150%;
+}
+.category_block li:hover {
+    background-color: #007bff;
+}
+.category_block li:hover a {
+    color: #ffffff;
+}
+.category_block li a {
+    color: #343a40;
+}
+.add_to_cart_block .price {
+    color: #c01508;
+    text-align: center;
+    font-weight: bold;
+    font-size: 200%;
+    margin-bottom: 0;
+}
+.add_to_cart_block .price_discounted {
+    color: #343a40;
+    text-align: center;
+    text-decoration: line-through;
+    font-size: 140%;
+}
+.product_rassurance {
+    padding: 10px;
+    margin-top: 15px;
+    background: #ffffff;
+    border: 1px solid #6c757d;
+    color: #6c757d;
+}
+.product_rassurance .list-inline {
+    margin-bottom: 0;
+    text-transform: uppercase;
+    text-align: center;
+}
+.product_rassurance .list-inline li:hover {
+    color: #343a40;
+}
+.reviews_product .fa-star {
+    color: gold;
+}
+.pagination {
+    margin-top: 20px;
+}
+
+
+{% endblock%}

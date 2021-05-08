@@ -15,7 +15,7 @@ import datetime
 
 def club_view(request):
  
-  all_clubs=YrbClub.objects.all()
+  all_clubs=YrbClub.objects.all().order_by('club')
   context={ 'all_clubs' : all_clubs}
   
   return render(request,'home.html', context )

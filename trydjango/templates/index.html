@@ -52,7 +52,7 @@
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href=""><span>Home</span></a></li>
                 <li class="has-children">
-                  <a href="{% url 'category' %}"><span>Books</span></a>
+                  <a href="{% url 'books:super' %}"><span>Books</span></a>
                   <ul class="dropdown arrow-top">
                     <li><a href="#">Menu One</a></li>
                     <li><a href="#">Menu Two</a></li>
@@ -115,7 +115,7 @@
     {%endblock%}
     
     <div class="footer">
-    <p style="font-weight: bold;">© 2021, York River Bookstore</p>
+    <h8 style="font-weight: bold;">© 2021, York River Bookstore</h8>
     </div>
 
   </body>
@@ -128,7 +128,7 @@
  }
 .hoop
 {
-  background-color: black;
+  background-color: #232F3E;
     width: 100%;
     height: 100px;
  
@@ -137,7 +137,7 @@
 height: 100%;
  }
 .footer{
-    background-color: black;
+    background-color: #232F3E;
     color: white;
     padding: 20px;
     left: 0;
