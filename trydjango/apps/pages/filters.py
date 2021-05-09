@@ -14,6 +14,6 @@ class PurchaseFilter(django_filters.FilterSet):
     
     class Meta:
         model = YrbPurchase
-        fields = ['cid','club','title','whenp']
+        fields = ['id','cid','club','title','whenp']
         
     

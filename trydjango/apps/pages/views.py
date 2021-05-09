@@ -27,14 +27,9 @@ def index_view(request):
 
 @login_required(login_url='account_login') 
 def home_view(request):
-  with psycopg2.connect("dbname='YRB' user='postgres' host='127.0.0.1' port='5432' password='maaz'") as connection:
-   with connection.cursor() as cursor:
-    cursor.execute("SELECT (ROW_NUMBER () OVER (ORDER BY whenp asc)) as index, club, title, year, whenp, qnty FROM Yrb_purchase WHERE cid = %s order by index desc", [request.user.id])
-    
-    all_purchases=dictfetchall(cursor)
-    purchase_filter = PurchaseFilter(request.GET, queryset=YrbPurchase.objects.filter(cid=request.user.id))
-    context={ 'all_purchases' : all_purchases,
-              'nbar': 'purchase',
+    print(request.user.id)
+    purchase_filter = PurchaseFilter(request.GET, queryset=YrbPurchase.objects.filter(cid=request.user.id).order_by('-whenp'))
+    context={ 'nbar': 'purchase',
               'filter': purchase_filter,
               'year': datetime.datetime.now().year
              }

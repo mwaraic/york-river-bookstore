@@ -8,5 +8,5 @@ urlpatterns = [
     path('', views.super_category_view, name="super"),
     path('<str:club>/', views.category_view, name="category"),
     path('<str:club>/<str:cat>',BookView.as_view(), name="booklist"),
-    path('<int:id>', views.book_detail_view, name="bookdetail")
+    path('<int:OfferID>', views.book_detail_view, name="bookdetail")
 ]
