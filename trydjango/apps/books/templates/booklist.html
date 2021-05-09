@@ -14,11 +14,9 @@ Booklist Page
 {% block content%}
 <section class="jumbotron text-center">
     <div class="container">
-    {% if cat == "Phil" %}
-        <h1 class="jumbotron-heading">Philosophy</h1>
-    {% else %}
+    
         <h1 class="jumbotron-heading">{{cat|title}}</h1>
-    {% endif %}
+   
     </div>
 </section>
 <div class="container">
@@ -42,11 +40,8 @@ Booklist Page
                 <div class="card-header bg-dark text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
                 <ul class="list-group category_block">
                 {%for category in all_categories%}
-                {% if category.cat == "Phil"%}
-                <li class="list-group-item"><a href="{% url 'books:booklist' club category.cat %}"class="stretched-link custom-card">Philosophy</a></li>
-                {% else %}
                 <li class="list-group-item"><a href="{% url 'books:booklist' club category.cat %}"class="stretched-link custom-card">{{category.cat|title}}</a></li>
-                {% endif %}
+                
                 {% endfor %}
                 </ul>
             </div>
