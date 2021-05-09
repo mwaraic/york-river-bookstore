@@ -66,30 +66,31 @@ class YrbMember(models.Model):
 
 
 class YrbOffer(models.Model):
-    club = models.OneToOneField(YrbClub, models.DO_NOTHING, db_column='club', primary_key=True)
-    title = models.ForeignKey(YrbBook, models.DO_NOTHING, db_column='title')
+    club = models.OneToOneField(YrbClub, models.DO_NOTHING, db_column='club')
+    title = models.OneToOneField(YrbBook, models.DO_NOTHING, db_column='title')
     year = models.SmallIntegerField()
     price = models.DecimalField(max_digits=5, decimal_places=2)
+    id = models.SmallIntegerField(primary_key=True)
 
     class Meta:
         
         db_table = 'yrb_offer'
-        unique_together = (('club', 'title', 'year'),)
+        unique_together = (('club', 'title', 'year', 'id'),)
 
 
 class YrbPurchase(models.Model):
-    cid = models.SmallIntegerField(primary_key=True)
-    club = models.ForeignKey(YrbClub, models.DO_NOTHING, db_column='club')
+    cid = models.SmallIntegerField()
+    club = models.OneToOneField(YrbOffer, models.DO_NOTHING, db_column='club')
     title = models.CharField(max_length=25)
     year = models.SmallIntegerField()
     whenp = models.DateTimeField()
     qnty = models.SmallIntegerField()
+    id = models.SmallIntegerField(primary_key=True)
 
     class Meta:
-        
+       
         db_table = 'yrb_purchase'
-        unique_together = (('cid', 'club', 'title', 'year', 'whenp'),)
-    
+        unique_together = (('club', 'title', 'year', 'whenp', 'id', 'cid'),)
     
     
     

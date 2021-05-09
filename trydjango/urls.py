@@ -21,6 +21,7 @@ from django.urls import path, include
 from trydjango.apps.pages.views import club_view, index_view, home_view, profile_view, clubs_view
 from trydjango.apps.books.views import category_view, super_category_view
 from trydjango.apps.account.views import account_create_view, account_login_view, logoutUser
+from trydjango.apps.yrb.views import shop_main
 admin.autodiscover()
 urlpatterns = [
     path('club/', club_view, name='club'),
@@ -31,7 +32,8 @@ urlpatterns = [
     path('account/profile/', profile_view, name='home'),
     path('account/clubs/', clubs_view, name='clubs'),
     path('books/',include('trydjango.apps.books.urls',namespace="books")),
-    path('admin/', admin.site.urls)
+    path('admin/', admin.site.urls),
+    path('index/', shop_main, name="shop")
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
