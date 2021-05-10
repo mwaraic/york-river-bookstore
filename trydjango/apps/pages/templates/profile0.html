@@ -2,12 +2,12 @@
 
 {% load widget_tweaks %}
  {% block local_content %}
- 
+
  
  <div class="content-panel">
                     <h2 style="margin-top: 0;">Your Profile</h2><br>
-                    <form method="POST" class="form-horizontal">
-                    {% csrf_token %}
+                    <form class="form-horizontal">
+                   
                         <fieldset class="fieldset">
                             <h3 class="fieldset-title bolder">Personal Info</h3>
                             
@@ -16,19 +16,19 @@
   <div class="input-group-prepend">
     <span class="input-group-text bg-info text-white" id="basic-addon3">Username</span>
   </div>
-   {% render_field form.username  %}
+   {% render_field form.username|append_attr:"readonly:readonly"   %}
 </div>
 <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text bg-info text-white" id="basic-addon3">First name</span>
   </div>
-   {% render_field form.first_name  %}
+   {% render_field form.first_name|append_attr:"readonly:readonly"   %}
 </div>
 <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text bg-info text-white" id="basic-addon3">Last name</span>
   </div>
-   {% render_field form.last_name  %}
+   {% render_field form.last_name|append_attr:"readonly:readonly"   %}
 </div>
                     
         
@@ -42,40 +42,21 @@
   <div class="input-group-prepend">
     <span class="input-group-text bg-info text-white" id="basic-addon3">City</span>
   </div>
-   {% render_field form.city  %}
+   {{ form.city|append_attr:"readonly:readonly"  }}
 </div>      
                         
                         </fieldset>
                         <hr>
                         
-                        <div class="form-group ">
-                            <div class="text-center" >
-                                <input class="btn btn-dark" type="submit" value="Update Profile">
-                                
-                            </div>
-                            
-                        </div>
+                        
                         
                     </form><div class="text-center">
-                           <a href="{% url 'home' %}" class="btn btn-dark" role="button" aria-pressed="true">Cancel</a>
+                           <a href="{% url 'editprofile' %}" class="btn btn-dark" role="button" aria-pressed="true">Edit Profile</a>
                             </div>
                 </div>
                 
-                
-                {% if form.errors %}
-    {% for field in form %}
-        {% for error in field.errors %}
-            <ul>
-                <li style="color:red">{{ error|escape }}</li>
-           </ul>
-        {% endfor %}
-    {% endfor %}
-    {% for error in form.non_field_errors %}
-          <ul>
-                <li style="color:red">{{ error|escape }}</li>
-           </ul>
-    {% endfor %}
-{% endif %}
+              
+               
  {% endblock %}
 
 

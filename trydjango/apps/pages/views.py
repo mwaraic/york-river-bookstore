@@ -1,13 +1,14 @@
-from django.utils.functional import empty
 from trydjango.apps.yrb.dbpostgres import dictfetchall
-from django.shortcuts import render
-from trydjango.apps.yrb.models import YrbClub, YrbPurchase
-from django.db import connection
+from django.shortcuts import render, redirect
+from trydjango.apps.yrb.models import YrbClub, YrbPurchase,YrbCustomer
 from trydjango.apps.yrb.dbpostgres import dictfetchall
 import psycopg2
 from django.contrib.auth.decorators import login_required
 from .filters import PurchaseFilter
 import datetime
+from .forms import UserForm
+from django.contrib.auth.models import User
+from django.contrib import messages
 # Create your views here.
 
 
@@ -27,7 +28,7 @@ def index_view(request):
 
 @login_required(login_url='account_login') 
 def home_view(request):
-    print(request.user.id)
+    
     purchase_filter = PurchaseFilter(request.GET, queryset=YrbPurchase.objects.filter(cid=request.user.id).order_by('-whenp'))
     context={ 'nbar': 'purchase',
               'filter': purchase_filter,
@@ -35,18 +36,41 @@ def home_view(request):
              }
     
     return render(request, 'purchase.html', context)
-  
 @login_required(login_url='account_login')  
 def profile_view(request):
-  with psycopg2.connect("dbname='YRB' user='postgres' host='127.0.0.1' port='5432' password='maaz'") as connection:
-   with connection.cursor() as cursor:
-    cursor.execute("SELECT cid, split_part(name,' ', 1) as first_name, split_part(name,' ', 2) as last_name, city FROM Yrb_customer WHERE cid = %s", [request.user.id])
-   
-    customer=dictfetchall(cursor)
-    context={ 'customer' : customer,
-              'nbar': 'home' }
+  user=User.objects.get(pk=request.user.id)
+  Customer=YrbCustomer.objects.get(cid=request.user.id)
+  data={'username': user.username, 'first_name': user.first_name, 'last_name': user.last_name, 'city': Customer.city}
+  form=UserForm(initial=data)
+  context={ 
+              'nbar': 'home',
+              'form': form}
     
-    return render(request, 'profile.html', context)  
+  return render(request, 'profile0.html', context) 
+   
+@login_required(login_url='account_login')  
+def profile_edit_view(request):
+  user=User.objects.get(pk=request.user.id)
+  Customer=YrbCustomer.objects.get(cid=request.user.id)
+  data={'username': user.username, 'first_name': user.first_name, 'last_name': user.last_name, 'city': Customer.city}
+  form=UserForm(initial=data)
+  if request.method=="POST":
+     form=UserForm(request.POST,instance=request.user, initial=data)
+     if form.is_valid():
+        print('username' in form.changed_data)
+        form.save()
+        
+        name = form.cleaned_data['first_name']+" "+form.cleaned_data['last_name']
+        city = form.cleaned_data['city']
+        YrbCustomer.objects.filter(cid=request.user.id).update(name=name,city=city) 
+        messages.success(request, 'Your profile was updated successfully')    
+        return redirect('home')
+  
+  context={ 
+              'nbar': 'home',
+              'form': form}
+    
+  return render(request, 'profile.html', context)  
       
 @login_required(login_url='account_login') 
 def clubs_view(request):

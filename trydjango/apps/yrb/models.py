@@ -47,8 +47,8 @@ class YrbClub(models.Model):
 
 class YrbCustomer(models.Model):
     cid = models.SmallIntegerField(primary_key=True)
-    name = models.CharField(max_length=20, blank=True, null=True)
-    city = models.CharField(max_length=15, blank=True, null=True)
+    name = models.CharField(max_length=20, null=True)
+    city = models.CharField(max_length=15, null=True)
 
     class Meta:
         
