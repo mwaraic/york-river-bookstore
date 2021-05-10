@@ -54,16 +54,21 @@
                 <li class="has-children">
                   <a href="{% url 'books:super' %}"><span>Books</span></a>
                   <ul class="dropdown arrow-top">
-                    <li><a href="#">Menu One</a></li>
-                    <li><a href="#">Menu Two</a></li>
-                    <li><a href="#">Menu Three</a></li>
                     <li class="has-children">
-                      <a href="#">Dropdown</a>
+                      <a href="#">Clubs</a>
                       <ul class="dropdown">
-                        <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
-                        <li><a href="#">Menu Four</a></li>
+                        <li><a href="{% url 'books:booklist' 'AAA' 'All' %}">AAA</a></li>
+                    <li><a href="{% url 'books:booklist' 'AARP' 'All' %}">AARP</a></li>
+                    <li><a href="{% url 'books:booklist' 'Basic' 'All' %}">Basic</a></li>
+                    <li><a href="{% url 'books:booklist' 'CNU Club' 'All' %}">CNU Club</a></li>
+                    <li><a href="{% url 'books:booklist' 'Oprah' 'All' %}">Oprah</a></li>
+                    <li><a href="{% url 'books:booklist' 'Readers Digest' 'All' %}">Readers Digest</a></li>
+                    <li><a href="{% url 'books:booklist' 'UVA Club' 'All' %}">UVA Club</a></li>
+                    <li><a href="{% url 'books:booklist' 'VaTech Club' 'All' %}">VaTech Club</a></li>
+                    <li><a href="{% url 'books:booklist' 'W&M Club' 'All' %}">W&M Club</a></li>
+                    <li><a href="{% url 'books:booklist' 'YRB_Bronze' 'All' %}">YRB Bronze</a></li>
+                    <li><a href="{% url 'books:booklist' 'YRB_Gold' 'All' %}">YRB Gold</a></li>
+                    <li><a href="{% url 'books:booklist' 'YRB_Silver' 'All' %}">YRB Silver</a></li>
                       </ul>
                     </li>
                   </ul>
