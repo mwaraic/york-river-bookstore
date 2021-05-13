@@ -47,9 +47,11 @@ INSTALLED_APPS = [
     'tempus_dominus',
     'daterange_filter',
     'trydjango.apps.books',
-    'trydjango.apps.books.templatetags.my_tags'
+    'trydjango.apps.books.templatetags.my_tags',
+    'cart',
+    'trydjango.apps.shoppingcart'   
 ]
-
+CART_SESSION_ID = 'cart'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -73,6 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processor.cart_total_amount'
             ],
         },
     },

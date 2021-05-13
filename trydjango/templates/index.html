@@ -1,9 +1,11 @@
 <!doctype html>
 {% load static %}
+{% load cart_tag %}
 <html lang="en">
   <head>
     
     <!-- Required meta tags -->
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -75,7 +77,8 @@
                 </li>
                 
                 <li><a href="{% url 'club' %}"><span>Clubs</span></a></li>
-                <li><a href=""><span>Cart</span></a></li>
+                <li><a href="{% url 'cart:cart_detail' %}"><span><i class="fa fa-shopping-cart"></i> {{request.session.cart|length}} | ${{cart_total_amount|floatformat:2}} </span></a></li>
+                
                 {% if request.user.is_authenticated %}
                 <li class="has-children">
                  <a href="{% url 'home' %}"><span>Hello, {{request.user}}</span></a>
@@ -126,6 +129,7 @@
   </body>
 
   <style>
+ 
   .content1{
    padding: 20px 20px;
    font-color: black;
@@ -150,7 +154,7 @@ height: 100%;
     bottom: 0;
     text-align: center;
     position: relative;
-    
+    right: 0;
     
 }
 input[readonly]{
@@ -158,6 +162,7 @@ input[readonly]{
   border: 0;
   font-size: 1em;
 }
+
   {%block style%}
   {%endblock%}
   </style>
