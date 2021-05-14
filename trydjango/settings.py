@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path
 import os, sys
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
@@ -25,10 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '1mbe8eab2!7mbl58-1%dnr3det*av!#3ar2y)v5-rqcu_e@i)4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+SECRET_KEY = os.environ.get('SECRET_KEY')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1','yorkriverbookstore.herokuapp.com']
 
 # Application definition
 
@@ -49,7 +52,8 @@ INSTALLED_APPS = [
     'trydjango.apps.books',
     'trydjango.apps.books.templatetags.my_tags',
     'cart',
-    'trydjango.apps.shoppingcart'   
+    'trydjango.apps.shoppingcart',
+    'whitenoise.runserver_nostatic'   
 ]
 CART_SESSION_ID = 'cart'
 MIDDLEWARE = [
@@ -60,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'trydjango.urls'
@@ -99,7 +104,8 @@ DATABASES = {
     }
 }
 
-
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -151,6 +157,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'root')
 STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static')
 ]
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR,"media")
 MEDIA_URL = "/media/"
