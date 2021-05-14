@@ -19,7 +19,6 @@ click==7.1.2
 comtypes==1.1.7
 contextlib2==0.6.0.post1
 cycler==0.10.0
-Cython @ file:///C:/ci/cython_1594829190914/work
 cytoolz==0.11.0
 dask @ file:///tmp/build/80754af9/dask-core_1602083700509/work
 decorator==4.4.2
