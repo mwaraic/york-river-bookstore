@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
-from trydjango.apps.yrb.models import YrbBook, YrbOffer,YrbShipping
+from trydjango.apps.yrb.models import YrbBook, YrbOffer, YrbPurchase,YrbShipping
 from django.contrib.auth.decorators import login_required
 from cart.cart import Cart
+import time
+from datetime import datetime 
+from django.contrib import messages
+import pytz
 
 # Create your views here.
 
@@ -28,6 +32,29 @@ def item_clear(request, offerid):
 def review(request):
     return render(request, 'review.html')
 
+
+@login_required(login_url="account_login")
+def purchase(request):
+    if request.method == 'GET':
+     
+     cart=Cart(request)
+     
+     value=datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
+      
+     dt = datetime.strptime(value[:19], '%Y-%m-%d %H:%M:%S')
+     
+     for key, value in request.session['cart'].items():
+     
+      try:
+       YrbPurchase.objects.create(cid=value['userid'], qnty=value['quantity'], year=value['year'],club=value['club'], title=value['title'], offerid=YrbOffer.objects.get(offerid=value['product_id']),whenp=dt) 
+      except:
+        messages.error(request, 'You are not the member of club offering the book. Kindly register.') 
+        return redirect("home") 
+     messages.success(request, 'Thank you for purchasing @ York River Bookstore')
+     Cart.clear(cart) 
+     return redirect("books:super") 
+       
+
 @login_required(login_url="account_login")
 def item_increment(request, offerid):
     cart = Cart(request)
@@ -45,14 +72,5 @@ def cart_clear(request):
 
 @login_required(login_url="account_login")
 def cart_detail(request):
-    list=[[*range(1,500)]]
-    a=500
-    b=1000
-    while b<=YrbShipping.objects.last().weight:
-        list.append(range(a,b))
-        b+=500
-        a+=500
-    for ran in list:
-       if 3400 in ran:
-           print(YrbShipping.objects.get(weight=ran[-1]+1).cost)
+    
     return render(request, 'cart_detail.html')

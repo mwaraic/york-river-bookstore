@@ -10,5 +10,6 @@ urlpatterns = [
     path('item_increment/<int:offerid>/', views.item_increment, name='item_increment'),
     path('cart_clear/', views.cart_clear, name='cart_clear'),
     path('cart-detail/',views.cart_detail,name='cart_detail'),
-    path('review/',views.review,name='review')
+    path('review/',views.review,name='review'),
+    path('purchase/',views.purchase,name='purchase')
 ]

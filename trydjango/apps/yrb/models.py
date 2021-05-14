@@ -79,7 +79,7 @@ class YrbOffer(models.Model):
 
 
 class YrbPurchase(models.Model):
-    id = models.SmallIntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     cid = models.SmallIntegerField()
     club = models.CharField(max_length=15)
     title = models.CharField(max_length=25)
