@@ -41,7 +41,7 @@ class YrbClub(models.Model):
     desp = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
-        
+            
         db_table = 'yrb_club'
 
 
