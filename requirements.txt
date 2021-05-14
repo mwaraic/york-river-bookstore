@@ -95,7 +95,6 @@ PyYAML==5.3.1
 pyzmq==19.0.2
 QDarkStyle==2.8.1
 QtPy==1.9.0
-Rtree==0.9.4
 ruamel-yaml==0.15.87
 scikit-image==0.17.2
 Send2Trash==1.5.0
