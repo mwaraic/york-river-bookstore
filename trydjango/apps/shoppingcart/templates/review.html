@@ -1,38 +1,20 @@
-{% extends 'index.html' %}
-
+{% extends 'index.html'%}
 {% load cart_tag %}
-{% block head%}
-
-{% endblock %}
 {% block content%}
-{% if request.session.cart|length == 0 %}
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body cart">
-                    <div class="col-sm-12 empty-cart-cls text-center"> <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
-                        <h3><strong>Your Cart is Empty</strong></h3>
-                        <h4>Add something to make me happy :)</h4> <a href="{% url 'books:super'%}" class="btn btn-primary cart-btn-transform m-3" data-abc="true">Continue shopping</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-{% else %}
-
-<div class ="container"><br><h2>Your Shopping Cart</h2><br>
+<div class ="container"><br><h2>Review</h2><br>
     <div class="row">
         <div class="col-sm-12 col-md-15 col-md-offset-1">
             <table class="table">
                 <thead>
                     <tr>
+
                         <th>Book</th>
+                       <th></th>
                         <th>Quantity</th>
                         <th class="text-center">Price</th>
                         <th class="text-center">Total</th>
-                        <th> </th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -42,29 +24,22 @@
                         <div class="media">
                         
                            <div class="media-body">
-                                <h4 class="media-heading"><a href="{%url 'books:bookdetail' value.product_id %}">{{value.title}}</a></h4>
+                                <h4 class="media-heading">{{value.title}}</h4>
                                  <h5 class="media-heading"> Offered by {{value.club}}</h5>
                                 <span class="text-success"><strong>In Stock</strong></span>
                                 
                             </div>
                         </div></td>
-                        <td class="col-md-1" style="text-align: center">
-                    <form method="POST" action="{% url 'cart:item_increment' value.product_id %}">
-                    {% csrf_token %}
-                   
-                        <input type="number" name="qnty" class="form-control" value="{{value.quantity}}">
-                        <input class="btn btn-warning"  style="font-size:10px; font-weight:bold;" type="submit" value="Update">
-                     
-                    </form>
+                        
+                        <td></td>
+                   <td class="col-md-1" style="text-align: center">
+                        <input type="number" name="qnty" class="form-control" value="{{value.quantity}}" readonly>
+                        
                         </td>
                         <td class="col-md-1 text-center"><strong>${{value.price}}</strong></td>
                         <td class="col-md-1 text-center"><strong>${{ value.price|multiply:value.quantity|floatformat:2 }}</strong></td>
-                        <td class="col-md-1 text-center">
-                        <form method="POST" action="{% url 'cart:item_clear' value.product_id %}">
-                    {% csrf_token %}
-                    
-                        <input class="btn btn-danger" type="submit" value="x"> </form>
-                    </td></tr>
+                        
+                    </tr>
                     {% endfor %}
                     <tr>
                         <td>   </td>
@@ -92,12 +67,12 @@
                         <td>   </td>
                         <td>   </td>
                         <td>
-                        <button onclick="location.href='{% url 'books:super'%}'" type="button" class="btn btn-dark">
-                            <span class="glyphicon glyphicon-shopping-cart">Continue shopping</span>
+                        <button onclick="location.href='{% url 'cart:cart_detail' %}'" type="button" class="btn btn-dark">
+                            <span class="glyphicon glyphicon-shopping-cart">Change</span>
                         </button></td>
                         <td>
-                        <button type="button" onclick="location.href='{% url 'cart:review'%}'"  class="btn btn-success">
-                            Checkout <span class="glyphicon glyphicon-play"></span>
+                        <button type="button" class="btn btn-success">
+                            Purchase <span class="glyphicon glyphicon-play"></span>
                         </button></td>
                     </tr>
                     
@@ -107,23 +82,4 @@
     </div>
 </div>
 
-{% endif %}
-{% endblock %}
-{% block style%}
-
-
-
-@import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
-
-.card{
-    margin: 100px;
-    border: transparent;
-}
-
-.btn-primary,
-.btn-primary.disabled,
-.btn-primary:disabled {
-    background-color: #4466f2 !important;
-    border-color: #4466f2 !important
-}
 {% endblock%}

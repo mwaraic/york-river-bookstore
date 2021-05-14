@@ -77,7 +77,7 @@
                 </li>
                 
                 <li><a href="{% url 'club' %}"><span>Clubs</span></a></li>
-                <li><a href="{% url 'cart:cart_detail' %}"><span><i class="fa fa-shopping-cart"></i> {{request.session.cart|length}} | ${{cart_total_amount|floatformat:2}} </span></a></li>
+                <li><a href="{% url 'cart:cart_detail' %}"><span><i class="fa fa-shopping-cart"></i> {{request.session.cart|length}} | ${{cart_subtotal_amount|floatformat:2}} </span></a></li>
                 
                 {% if request.user.is_authenticated %}
                 <li class="has-children">

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
-from trydjango.apps.yrb.models import YrbBook, YrbOffer
+from trydjango.apps.yrb.models import YrbBook, YrbOffer,YrbShipping
 from django.contrib.auth.decorators import login_required
 from cart.cart import Cart
 
@@ -24,6 +24,9 @@ def item_clear(request, offerid):
     cart.remove(product)
     return redirect("cart:cart_detail")
 
+@login_required(login_url="account_login")
+def review(request):
+    return render(request, 'review.html')
 
 @login_required(login_url="account_login")
 def item_increment(request, offerid):
@@ -42,5 +45,14 @@ def cart_clear(request):
 
 @login_required(login_url="account_login")
 def cart_detail(request):
-    
+    list=[[*range(1,500)]]
+    a=500
+    b=1000
+    while b<=YrbShipping.objects.last().weight:
+        list.append(range(a,b))
+        b+=500
+        a+=500
+    for ran in list:
+       if 3400 in ran:
+           print(YrbShipping.objects.get(weight=ran[-1]+1).cost)
     return render(request, 'cart_detail.html')
