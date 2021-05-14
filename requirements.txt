@@ -99,7 +99,6 @@ ruamel-yaml==0.15.87
 scikit-image==0.17.2
 Send2Trash==1.5.0
 simplegeneric==0.8.1
-sip==4.19.13
 snowballstemmer==2.0.0
 sortedcollections==1.2.1
 sortedcontainers==2.2.2
