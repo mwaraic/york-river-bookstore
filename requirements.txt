@@ -129,7 +129,6 @@ wincertstore==0.2
 wrapt==1.11.2
 WTForms-Django==0.1
 xlrd==1.2.0
-xlwings==0.20.8
 xlwt==1.3.0
 xmltodict==0.12.0
 zict==2.0.0
