@@ -61,7 +61,6 @@ libarchive-c==2.9
 llvmlite==0.34.0
 locket==0.2.0
 MarkupSafe==1.1.1
-mccabe==0.6.1
 menuinst==1.4.16
 mistune==0.8.4
 mkl-fft==1.2.0
