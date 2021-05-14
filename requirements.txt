@@ -68,7 +68,6 @@ packaging==20.4
 parso==0.7.0
 partd==1.1.0
 passlib==1.7.4
-path @ file:///C:/ci/path_1598358556930/work
 pathlib2==2.3.5
 pathtools==0.1.2
 patsy==0.5.1
