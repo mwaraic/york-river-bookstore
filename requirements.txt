@@ -20,7 +20,6 @@ comtypes==1.1.7
 contextlib2==0.6.0.post1
 cycler==0.10.0
 cytoolz==0.11.0
-dask @ file:///tmp/build/80754af9/dask-core_1602083700509/work
 decorator==4.4.2
 defusedxml==0.6.0
 diff-match-patch @ file:///tmp/build/80754af9/diff-match-patch_1594828741838/work
