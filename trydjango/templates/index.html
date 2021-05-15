@@ -5,8 +5,7 @@
   <head>
     
     <!-- Required meta tags -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
@@ -129,7 +128,11 @@
   </body>
 
   <style>
- 
+html,body
+{
+    width: 100%;
+    overflow-x: hidden; 
+}
   .content1{
    padding: 20px 20px;
    font-color: black;
@@ -162,6 +165,7 @@ input[readonly]{
   border: 0;
   font-size: 1em;
 }
+
 
   {%block style%}
   {%endblock%}
