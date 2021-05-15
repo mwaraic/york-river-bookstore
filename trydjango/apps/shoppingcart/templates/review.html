@@ -5,7 +5,7 @@
 <div class ="container"><br><h2>Review</h2><br>
     <div class="row">
         <div class="col-sm-12 col-md-15 col-md-offset-1">
-            <table class="table">
+            <table class="mytable mobile-optimised table-light">
                 <thead>
                     <tr>
 
@@ -32,12 +32,12 @@
                         </div></td>
                         
                         <td></td>
-                   <td class="col-md-1" style="text-align: center">
+                   <td data-th="Quantity" class="col-md-1" style="text-align: center">
                         <input type="number" name="qnty" class="form-control" value="{{value.quantity}}" readonly>
                         
                         </td>
-                        <td class="col-md-1 text-center"><strong>${{value.price}}</strong></td>
-                        <td class="col-md-1 text-center"><strong>${{ value.price|multiply:value.quantity|floatformat:2 }}</strong></td>
+                        <td data-th="Price" class="col-md-1 text-center"><strong>${{value.price}}</strong></td>
+                        <td data-th="Total" class="col-md-1 text-center"><strong>${{ value.price|multiply:value.quantity|floatformat:2 }}</strong></td>
                         
                     </tr>
                     {% endfor %}
@@ -83,3 +83,65 @@
 </div>
 
 {% endblock%}
+
+{% block style%}
+@import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
+
+.card{
+    margin: 100px;
+    border: transparent;
+}
+
+.btn-primary,
+.btn-primary.disabled,
+.btn-primary:disabled {
+    background-color: #4466f2 !important;
+    border-color: #4466f2 !important
+}
+.mytable{
+	width:100%;
+	margin:0 auto;
+	max-width:1200px;
+	border-collapse:collapse;
+}
+.mytable td{
+	border: inset 1px;
+	padding:10px;
+	vertical-align:top;
+}
+p{margin:0 0 1em}
+
+@media screen and (max-width:601px) {
+	table.mobile-optimised {
+		word-wrap:break-word;
+	}
+	table.mobile-optimised thead {
+		display:none
+	}
+	table.mobile-optimised td {
+		display:block;
+		float:left;/* ie9 and under hack */
+		width:100%;
+		clear:both;
+		
+		padding:10px 5px;
+		-moz-box-sizing:border-box;
+		-webkit-box-sizing:border-box;
+		box-sizing:border-box;
+	}
+	table.mobile-optimised tbody, table.mobile-optimised tr {
+		display:block
+	}
+	.mobile-optimised td:before {
+		content:attr(data-th);
+		display:block;
+		font-weight:bold;
+		margin:0 0 2px;
+		color:#000;
+	}
+	.mobile-optimised tbody tr {
+		float:left;width:100%;
+    margin-bottom:10px;
+	}
+}
+{% endblock %}
