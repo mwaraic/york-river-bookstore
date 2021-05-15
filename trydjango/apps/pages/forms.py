@@ -1,4 +1,4 @@
-from trydjango.apps.yrb.models import YrbCustomer, YrbMember
+from trydjango.apps.yrb.models import YrbClub, YrbCustomer, YrbMember
 from django import forms
 from django.contrib.auth.models import User
 from django.forms import widgets, TextInput, CharField, Widget
@@ -41,6 +41,17 @@ class UserForm(forms.ModelForm):
        if self.cleaned_data['city'].strip() == '':
             raise ValidationError('This field cannot be blank!')
        return self.cleaned_data['city']
-   
+  
+
+class MemberForm(forms.ModelForm):
+    club= forms.ModelChoiceField(queryset=YrbClub.objects.values_list('club', flat=True).order_by('club'), empty_label='Add new club')
+    class Meta:
+        model= YrbMember 
+        fields= ['cid','club']
+        
+    def __init__(self, user, *args, **kwargs):
+         super(MemberForm, self).__init__(*args, **kwargs)
+         self.fields['club'].queryset = YrbClub.objects.values_list('club', flat=True).order_by('club').difference(YrbMember.objects.filter(cid=user.id).values_list('club', flat=True))
+       
    
         

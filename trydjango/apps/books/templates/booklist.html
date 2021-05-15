@@ -12,15 +12,18 @@
 Booklist Page
 {%endblock%}
 {% block content%}
-<section class="jumbotron text-center">
-    <div class="container">
+
+    <div class="container" style= "text-align: center;"><br>
+    {% for index in index %}
         {% if cat == "All" %}
-        <h1 class="jumbotron-heading">{{club}}</h1>
+         <img class="card-img-top" style="width: 200px;
+    height: 200px;"src="/static/images/club/{{index.index}}.jpg">
+    
         {% else %}
-         <h1 class="jumbotron-heading">{{cat|title}}</h1>
-        {% endif %}
-    </div>
-</section>
+         <h1 class="jumbotron-heading text-center">{{cat|title}}</h1>
+        {% endif %}{%endfor%}
+    </div><br>
+
 <div class="container">
     <div class="row">
         <div class="col">
@@ -41,19 +44,21 @@ Booklist Page
             <div class="card bg-light mb-3">
                 <div class="card-header bg-dark text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
                 <ul class="list-group category_block">
+                {% if cat == 'All' %}
+                 <li class="list-group-item active"><a href="{% url 'books:booklist' club 'All' %}"class="stretched-link custom-card">All</a></li>
+                {% else %}
                  <li class="list-group-item"><a href="{% url 'books:booklist' club 'All' %}"class="stretched-link custom-card">All</a></li>
+                 {% endif %}
                 {%for category in all_categories%}
-                <li class="list-group-item"><a href="{% url 'books:booklist' club category.cat %}"class="stretched-link custom-card">{{category.cat|title}}</a></li>
-                
+                {% if category.cat == cat %}
+                <li class="list-group-item active"><a href="{% url 'books:booklist' club category.cat %}"class="stretched-link custom-card">{{category.cat|title}}</a></li>
+                {% else %}
+                 <li class="list-group-item"><a href="{% url 'books:booklist' club category.cat %}"class="stretched-link custom-card">{{category.cat|title}}</a></li>
+                 {% endif %}
                 {% endfor %}
                 </ul>
             </div>
-            <div class="card bg-light mb-3">
-                <div class="card-header bg-dark text-white text-uppercase"><i class="fa fa-filter"></i> Filter</div>
-                <div class="card-body">
-           
-                </div>
-            </div>
+            
         </div>
         <div class="col">
         <div class="d-flex align-items-center justify-content-between py-4 results" >
@@ -139,6 +144,9 @@ body {
     font-weight: 600
 }
 
+.active a{
+    color: white !important;
+}
 
 .form-select {
     

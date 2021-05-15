@@ -40,8 +40,11 @@ class BookView(FilteredListView):
     
     with psycopg2.connect("dbname='dbvr7ph65nfv0q' user='epyzanjwjayjxm' host='ec2-18-215-111-67.compute-1.amazonaws.com' port='5432' password='88a7cf9b3959e5cbebcf1ede0aa6c0776741f8488be1ddbe7ba539e7b971bde0'") as connection:
      with connection.cursor() as cursor:
+      cursor.execute("SELECT z.index from (SELECT row_number() over (order by club) as index, club from yrb_club) as z where z.club=%s;",[self.kwargs.get('club')])
+      clubindex=dictfetchall(cursor)
       cursor.execute("SELECT initcap(cat) as cat  from yrb_category order by cat;")
       all_categories=dictfetchall(cursor)
+      context['index']=clubindex
       context['all_categories']=all_categories
       context['club']=self.kwargs.get('club')
       context['cat']=self.kwargs.get('cat')

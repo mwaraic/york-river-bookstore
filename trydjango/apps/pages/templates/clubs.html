@@ -1,5 +1,5 @@
 {% extends 'dashboard.html' %}
-
+{% load widget_tweaks%}
 
  {% block local_content %}
  
@@ -9,9 +9,12 @@
   <li class="list-group-item d-flex justify-content-between align-items-center">
     {{club.club}}
     <span class="badge badge-primary badge-pill">{{club.count}}</span> </li>
-  {% endfor%}
- 
-</ul>
+  {% endfor%}<br>
+ <form>
+ {% render_field form.club class="form-control"%}</form>
+
+ </ul>
+
  </div><br>
                 
                 
