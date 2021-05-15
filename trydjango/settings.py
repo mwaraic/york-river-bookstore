@@ -26,9 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '1mbe8eab2!7mbl58-1%dnr3det*av!#3ar2y)v5-rqcu_e@i)4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
@@ -52,7 +51,8 @@ INSTALLED_APPS = [
     'daterange_filter',
     'trydjango.apps.books',
     'trydjango.apps.books.templatetags.my_tags',
-    'cart',
+    'trydjango.apps.shoppingcart.templatetags.cart_tag',
+    
     'trydjango.apps.shoppingcart',
     'whitenoise.runserver_nostatic'   
 ]
@@ -81,7 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'cart.context_processor.cart_total_amount'
+                'trydjango.apps.shoppingcart.context_processor.cart_total_amount'
             ],
         },
     },
