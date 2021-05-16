@@ -94,9 +94,10 @@ def clubs_view(request):
               'nbar': 'clubs',
               'form': form
                }
+       return render(request, 'clubs.html', context)  
     else:
        context={ 'all_clubs' : all_clubs,
               'nbar': 'clubs',
               'form': form
                }
-   return render(request, 'clubs.html', context)  
+       return render(request, 'clubs.html', context)  
