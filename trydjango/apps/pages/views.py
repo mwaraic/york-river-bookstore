@@ -85,7 +85,6 @@ def clubs_view(request):
    with connection.cursor() as cursor:
     cursor.execute("SELECT yrb_member.club, count(yrb_purchase.club) from yrb_purchase, yrb_member where yrb_purchase.club= yrb_member.club and yrb_purchase.cid=yrb_member.cid and yrb_purchase.cid= %s group by yrb_member.club order by yrb_member.club;", [request.user.id])
     all_clubs=dictfetchall(cursor)
-    print(all_clubs)
     if all_clubs == []:
        
        cursor.execute("SELECT distinct(yrb_member.club) from yrb_member where yrb_member.cid= %s order by yrb_member.club;", [request.user.id])
@@ -100,4 +99,4 @@ def clubs_view(request):
               'nbar': 'clubs',
               'form': form
                }
-    return render(request, 'clubs.html', context)  
+   return render(request, 'clubs.html', context)  
