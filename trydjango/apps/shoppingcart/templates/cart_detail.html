@@ -114,16 +114,19 @@
 {% endblock %}
 {% block style%}
 
-
-
 @import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
-
+ @media screen and (min-width: 768px) {
+  html{
+    width: 100%;
+    height: 100%;  
+  }
+}
 .card{
     margin: 100px;
     border: transparent;
 }
 .container4{
-    margin: 100px;
+    margin:10%;
 }
 .btn-primary,
 .btn-primary.disabled,
