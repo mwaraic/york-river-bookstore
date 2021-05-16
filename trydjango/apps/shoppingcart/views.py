@@ -30,7 +30,11 @@ def item_clear(request, offerid):
 
 @login_required(login_url="account_login")
 def review(request):
-    return render(request, 'review.html')
+    
+    if len(request.session['cart'].items()) == 0:
+       return redirect("cart:cart_detail")
+    else: 
+       return render(request, 'review.html')
 
 
 @login_required(login_url="account_login")

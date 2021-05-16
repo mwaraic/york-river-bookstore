@@ -10,12 +10,22 @@
     {{club.club}}
     <span class="badge badge-primary badge-pill">{{club.count}}</span> </li>
   {% endfor%}<br>
- <form>
- {% render_field form.club class="form-control"%}</form>
 
+<form method="POST">
+ {% csrf_token%}
+        <div class="form-group ">
+        {% render_field form.club class="form-control"%}
+         <br>
+                            <div class="text-center" >
+                                <input class="btn btn-dark" type="submit" value="Add club">
+                                
+                            </div>
+                            
+                        </div>
+                        
+                    </form>
  </ul>
-
- </div><br>
-                
+<br> 
+   </div>     
                 
  {% endblock %}

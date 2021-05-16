@@ -44,7 +44,7 @@ class UserForm(forms.ModelForm):
   
 
 class MemberForm(forms.ModelForm):
-    club= forms.ModelChoiceField(queryset=YrbClub.objects.values_list('club', flat=True).order_by('club'), empty_label='Add new club')
+    club= forms.ModelChoiceField(queryset=YrbClub.objects.values_list('club', flat=True).order_by('club'), empty_label='Select new club')
     class Meta:
         model= YrbMember 
         fields= ['cid','club']
@@ -52,6 +52,7 @@ class MemberForm(forms.ModelForm):
     def __init__(self, user, *args, **kwargs):
          super(MemberForm, self).__init__(*args, **kwargs)
          self.fields['club'].queryset = YrbClub.objects.values_list('club', flat=True).order_by('club').difference(YrbMember.objects.filter(cid=user.id).values_list('club', flat=True))
+         self.fields['cid'].queryset=YrbCustomer.objects.filter(cid=user.id)
        
    
         

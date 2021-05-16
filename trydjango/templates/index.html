@@ -53,7 +53,7 @@
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="{% url 'shop' %}"><span>Home</span></a></li>
                 <li class="has-children">
-                  <a href="{% url 'books:super' %}"><span>Books</span></a>
+                  <a href="{% url 'books:super' %}"><span>Clubs</span></a>
                   <ul class="dropdown arrow-top">
                    
                         <li><a href="{% url 'books:booklist' 'AAA' 'All' %}">AAA</a></li>
@@ -72,7 +72,12 @@
                   </ul>
                 </li>
                 
-                <li><a href="{% url 'club' %}"><span>Clubs</span></a></li>
+                <li class="has-children"><a href="#"><span>Store Info</span></a>
+                <ul class="dropdown arrow-top">
+                   
+                        <li><a href="{% url 'club' %}">About us</a></li>
+                
+                </ul></li>
                 <li><a href="{% url 'cart:cart_detail' %}"><span><i class="fa fa-shopping-cart"></i> {{request.session.cart|length}} | ${{cart_subtotal_amount|floatformat:2}} </span></a></li>
                 
                 {% if request.user.is_authenticated %}
