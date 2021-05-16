@@ -83,10 +83,7 @@ def clubs_view(request):
    return redirect('clubs')
   with psycopg2.connect("dbname='dbvr7ph65nfv0q' user='epyzanjwjayjxm' host='ec2-18-215-111-67.compute-1.amazonaws.com' port='5432' password='88a7cf9b3959e5cbebcf1ede0aa6c0776741f8488be1ddbe7ba539e7b971bde0'") as connection:
    with connection.cursor() as cursor:
-    cursor.execute("SELECT yrb_member.club, count(yrb_purchase.club) from yrb_purchase, yrb_member where yrb_purchase.club= yrb_member.club and yrb_purchase.cid=yrb_member.cid and yrb_purchase.cid= %s group by yrb_member.club order by yrb_member.club;", [request.user.id])
-    all_clubs=dictfetchall(cursor)
-    if all_clubs == []:
-       
+    
        cursor.execute("SELECT distinct(yrb_member.club) from yrb_member where yrb_member.cid= %s order by yrb_member.club;", [request.user.id])
        all_clubs=dictfetchall(cursor)
        
@@ -95,9 +92,4 @@ def clubs_view(request):
               'form': form
                }
        return render(request, 'clubs.html', context)  
-    else:
-       context={ 'all_clubs' : all_clubs,
-              'nbar': 'clubs',
-              'form': form
-               }
-       return render(request, 'clubs.html', context)  
+    
