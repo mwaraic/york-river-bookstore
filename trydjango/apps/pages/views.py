@@ -23,7 +23,7 @@ def club_view(request):
 
 def index_view(request):
     
-    return render(request, 'main.html', {})
+    return render(request, 'index.html', {})
   
 
 @login_required(login_url='account_login') 
