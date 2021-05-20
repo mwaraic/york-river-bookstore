@@ -3,7 +3,7 @@
 {% load cart_tag %}
 <html lang="en">
   <head>
-    
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/icon4.png" />
     <!-- Required meta tags -->
      <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -45,12 +45,13 @@
         <div class="row align-items-center">
           
           <div class="col-10 col-xl">
-            <h1 class="mb-0 site-logo"><a href="{% url 'shop' %}" class="text-white mb-0">York River Bookstore</a></h1>
+          <a href="{% url 'shop' %}"><img style="width:300px; height: 80px; margin-top: -15px; margin-left: -20px;"src="/static/images/logo4.png"></a>
           </div>
-          <div class="col-12 col-md-10 d-none d-xl-block">
+          <div class="col-12 col-md-15 d-none d-xl-block"> 
             <nav class="site-navigation position-relative text-right" role="navigation">
 
-              <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+              <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block" style="margin-top: -65px;">
+                <li></li><li></li>
                 <li><a href="{% url 'shop' %}"><span>Home</span></a></li>
                 <li class="has-children">
                   <a href="{% url 'books:super' %}"><span>Clubs</span></a>
@@ -98,7 +99,7 @@
           </div>
 
 
-          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: -2px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
           </div>
 
