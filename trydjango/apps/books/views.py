@@ -1,16 +1,20 @@
+from trydjango.settings import DATABASES
+from typing import BinaryIO
+
+from django.contrib.messages import default_app_config
+from trydjango.apps.yrb.models import YrbOffer
 from django.shortcuts import render
 from trydjango.apps.yrb.dbpostgres import dictfetchall
-from .filters import PriceFilter, FilteredListView
 import os
+from .filters import PriceFilter, FilteredListView
 import psycopg2
 import subprocess
-from django_heroku import dj_database_url
+
 database_url = os.getenv(
     'DATABASE_URL'
 )
 
 connection = psycopg2.connect(database_url)
-
 # Create your views here.
 
 def super_category_view(request):

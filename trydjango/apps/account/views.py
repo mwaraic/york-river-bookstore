@@ -1,13 +1,12 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render
 from .forms import UserForm
-from trydjango.apps.yrb.models import YrbCustomer
+from trydjango.apps.yrb.models import YrbClub, YrbCustomer, YrbMember
 from django.contrib.auth.models import User
 from django.contrib import messages
 import psycopg2
-import os
 import subprocess
-from django_heroku import dj_database_url
+import os
 database_url = os.getenv(
     'DATABASE_URL'
 )
@@ -27,9 +26,7 @@ def account_create_view(request):
         name = form.cleaned_data['first_name']+" "+form.cleaned_data['last_name']
         city = form.cleaned_data['city']
         YrbCustomer.objects.create(cid=User.objects.get(username=username).id, name=name, city=city) 
-        
-        with connection.cursor() as cursor:
-         cursor.execute("INSERT INTO yrb_member(cid, club) select id, 'Basic' from auth_user where id=%s;", [User.objects.get(username=username).id])
+        YrbMember.objects.create(cid=YrbCustomer.objects.get(cid=User.objects.get(username=username).id), club=YrbClub.objects.get(club='Basic'))
         messages.success(request, 'Your account was created successfully')    
         return redirect('account_login')
     context={
