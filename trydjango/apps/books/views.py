@@ -1,13 +1,18 @@
-from trydjango.apps.yrb.models import YrbOffer
 from django.shortcuts import render
 from trydjango.apps.yrb.dbpostgres import dictfetchall
-import psycopg2
 from .filters import PriceFilter, FilteredListView
+import psycopg2
+import subprocess
+
+proc = subprocess.Popen('heroku config:get DATABASE_URL -a yorkriverbookstore', stdout=subprocess.PIPE, shell=True)
+db_url = proc.stdout.read().decode('utf-8').strip() + '?sslmode=require'
+
+connection = psycopg2.connect(db_url)
 
 # Create your views here.
 
 def super_category_view(request):
-  with psycopg2.connect("dbname='dbvr7ph65nfv0q' user='epyzanjwjayjxm' host='ec2-18-215-111-67.compute-1.amazonaws.com' port='5432' password='88a7cf9b3959e5cbebcf1ede0aa6c0776741f8488be1ddbe7ba539e7b971bde0'") as connection:
+ 
    with connection.cursor() as cursor:
     cursor.execute("SELECT row_number() over (order by club) as index, club from yrb_club order by club;")
    
@@ -19,7 +24,7 @@ def super_category_view(request):
   
 def category_view(request, club):
     
-  with psycopg2.connect("dbname='dbvr7ph65nfv0q' user='epyzanjwjayjxm' host='ec2-18-215-111-67.compute-1.amazonaws.com' port='5432' password='88a7cf9b3959e5cbebcf1ede0aa6c0776741f8488be1ddbe7ba539e7b971bde0'") as connection:
+ 
    with connection.cursor() as cursor:
     cursor.execute("SELECT row_number() over (order by cat) as index, initcap(cat) as cat  from yrb_category order by cat;")
     
@@ -38,8 +43,9 @@ class BookView(FilteredListView):
   def get_context_data(self,**kwargs):
     context= super().get_context_data(**kwargs)
     
-    with psycopg2.connect("dbname='dbvr7ph65nfv0q' user='epyzanjwjayjxm' host='ec2-18-215-111-67.compute-1.amazonaws.com' port='5432' password='88a7cf9b3959e5cbebcf1ede0aa6c0776741f8488be1ddbe7ba539e7b971bde0'") as connection:
-     with connection.cursor() as cursor:
+    
+   
+    with connection.cursor() as cursor:
       cursor.execute("SELECT z.index from (SELECT row_number() over (order by club) as index, club from yrb_club) as z where z.club=%s;",[self.kwargs.get('club')])
       clubindex=dictfetchall(cursor)
       cursor.execute("SELECT initcap(cat) as cat  from yrb_category order by cat;")
@@ -51,7 +57,8 @@ class BookView(FilteredListView):
       return context
 
 def book_detail_view(request,OfferID):
-    with psycopg2.connect("dbname='dbvr7ph65nfv0q' user='epyzanjwjayjxm' host='ec2-18-215-111-67.compute-1.amazonaws.com' port='5432' password='88a7cf9b3959e5cbebcf1ede0aa6c0776741f8488be1ddbe7ba539e7b971bde0'") as connection:
+  
+ 
      with connection.cursor() as cursor:
      
       cursor.execute("SELECT yrb_offer.offerid, yrb_offer.title, yrb_offer.price, yrb_offer.club, yrb_offer.year, yrb_book.cat, yrb_book.language, yrb_book.weight  from yrb_offer, yrb_book where yrb_offer.title=yrb_book.title and yrb_offer.year=yrb_book.year and yrb_offer.OfferID=%s;", [OfferID])

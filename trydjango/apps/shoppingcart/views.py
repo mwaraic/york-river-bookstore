@@ -1,13 +1,10 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
-from trydjango.apps.yrb.models import YrbBook, YrbOffer, YrbPurchase,YrbShipping
+from trydjango.apps.yrb.models import YrbBook, YrbOffer, YrbPurchase
 from django.contrib.auth.decorators import login_required
 from .cart import Cart
-import time
 from datetime import datetime 
 from django.contrib import messages
-import pytz
-
 # Create your views here.
 
 

@@ -2,13 +2,20 @@ from trydjango.apps.yrb.dbpostgres import dictfetchall
 from django.shortcuts import render, redirect
 from trydjango.apps.yrb.models import YrbClub, YrbPurchase,YrbCustomer, YrbMember
 from trydjango.apps.yrb.dbpostgres import dictfetchall
-import psycopg2
 from django.contrib.auth.decorators import login_required
 from .filters import PurchaseFilter
 import datetime
 from .forms import MemberForm, UserForm
 from django.contrib.auth.models import User
 from django.contrib import messages
+import psycopg2
+import subprocess
+
+proc = subprocess.Popen('heroku config:get DATABASE_URL -a yorkriverbookstore', stdout=subprocess.PIPE, shell=True)
+db_url = proc.stdout.read().decode('utf-8').strip() + '?sslmode=require'
+
+connection = psycopg2.connect(db_url)
+
 # Create your views here.
 
 
@@ -81,8 +88,9 @@ def clubs_view(request):
    YrbMember.objects.create(cid=YrbCustomer.objects.get(cid=request.user.id),club=YrbClub.objects.get(club=form.data['club']))
    messages.success(request, 'Club was added successfully')    
    return redirect('clubs')
-  with psycopg2.connect("dbname='dbvr7ph65nfv0q' user='epyzanjwjayjxm' host='ec2-18-215-111-67.compute-1.amazonaws.com' port='5432' password='88a7cf9b3959e5cbebcf1ede0aa6c0776741f8488be1ddbe7ba539e7b971bde0'") as connection:
-   with connection.cursor() as cursor:
+  
+
+  with connection.cursor() as cursor:
     
        cursor.execute("SELECT distinct(yrb_member.club) from yrb_member where yrb_member.cid= %s order by yrb_member.club;", [request.user.id])
        all_clubs=dictfetchall(cursor)

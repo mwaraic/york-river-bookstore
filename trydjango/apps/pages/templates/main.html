@@ -2,7 +2,11 @@
 {% block content%}
 
 <div class="image1">  
-      </div>
+<p class="caption1 text-left">Welcome!<a class="btn btn-lg btn-info caption2" href="{% url 'account_create'%}" role="button">Sign up</a></p>          
+</div>
+
+<div class="alert alert-info text-white text-center" role="alert">
+OUR TOP CLUBS</div>
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -11,6 +15,7 @@
     </div>
     <div class="carousel-item">
       <img class="d-block w-100" src="/static/images/club/2.jpg" alt="Second slide">
+      
       <a href="{% url 'books:booklist' 'AARP' 'All' %}"class="stretched-link custom-card"></a>
     </div>
     <div class="carousel-item">
@@ -36,17 +41,17 @@
         
 {% endblock %}
 {% block style%}
+
 .image1{
-background-image: url("https://cdn.wallpapersafari.com/95/6/7yQYBI.jpg");
+background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://cdn.wallpapersafari.com/95/6/7yQYBI.jpg");
 background-position:center;
 background-size: cover;
 background-repeat: no-repeat;
-
 width: 100%;
 height: 533px;
   }
 .image2{
-background-image: url("https://cdn.thegentlemansjournal.com/wp-content/uploads/2018/03/clubsheader-2502x1200-c-top.jpg");
+background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://cdn.thegentlemansjournal.com/wp-content/uploads/2018/03/clubsheader-2502x1200-c-top.jpg");
 background-position:center;
 background-size: cover;
 background-repeat: no-repeat;
@@ -56,17 +61,22 @@ height: 533px;
   }
 .caption1 {
    font-family: 'Playfair Display', serif;
-   font-size: 40px;
-   border: 3px solid white;
+   font-size: 80px;
    color: white;
-   text-align: center;
-   top: 50%;
+   padding: 100px; 
+   top: 5%;
+   right:20%;
    width: 400px;
-   border-radius: 15px;
-   font-style: italic;
-   
    position: relative;
-  
+   margin: 0 auto; 
+}
+.caption2 {
+   font-family: 'Playfair Display', serif;
+   font-size: 20px;
+   font-style: italic;
+   font-weight: bold;
+   color: white;
+   position: relative;
    margin: 0 auto; 
 }
 .stretched-link::after {

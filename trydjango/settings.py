@@ -97,16 +97,18 @@ WSGI_APPLICATION = 'trydjango.wsgi.application'
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'YRB', 
-        'USER': 'postgres', 
-        'PASSWORD': 'maaz',
-        'HOST': '127.0.0.1', 
+        'NAME': 'db7j5cm7c8rmnq', 
+        'USER': 'lricqekuednocs', 
+        'PASSWORD': '92068540c6c8c96e96ac85c99c5d2879f42c8d0396558e9b25d89281010ce473',
+        'HOST': 'ec2-3-214-136-47.compute-1.amazonaws.com', 
         'PORT': '5432',
     }
 }
 
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
+
+
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 

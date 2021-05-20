@@ -1,12 +1,16 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render
 from .forms import UserForm
-from trydjango.apps.yrb.models import YrbClub, YrbMember, YrbCustomer
+from trydjango.apps.yrb.models import YrbCustomer
 from django.contrib.auth.models import User
-import psycopg2
 from django.contrib import messages
+import psycopg2
+import subprocess
 
-from django.core.exceptions import ValidationError
+proc = subprocess.Popen('heroku config:get DATABASE_URL -a yorkriverbookstore', stdout=subprocess.PIPE, shell=True)
+db_url = proc.stdout.read().decode('utf-8').strip() + '?sslmode=require'
+
+connection = psycopg2.connect(db_url)
 # Create your views here.
 
 def account_create_view(request):
@@ -21,9 +25,9 @@ def account_create_view(request):
         name = form.cleaned_data['first_name']+" "+form.cleaned_data['last_name']
         city = form.cleaned_data['city']
         YrbCustomer.objects.create(cid=User.objects.get(username=username).id, name=name, city=city) 
-        with psycopg2.connect("dbname='dbvr7ph65nfv0q' user='epyzanjwjayjxm' host='ec2-18-215-111-67.compute-1.amazonaws.com' port='5432' password='88a7cf9b3959e5cbebcf1ede0aa6c0776741f8488be1ddbe7ba539e7b971bde0'") as connection:
-          with connection.cursor() as cursor:
-           cursor.execute("INSERT INTO yrb_member(cid, club) select id, 'Basic' from auth_user where id=%s;", [User.objects.get(username=username).id])
+        
+        with connection.cursor() as cursor:
+         cursor.execute("INSERT INTO yrb_member(cid, club) select id, 'Basic' from auth_user where id=%s;", [User.objects.get(username=username).id])
         messages.success(request, 'Your account was created successfully')    
         return redirect('account_login')
     context={
