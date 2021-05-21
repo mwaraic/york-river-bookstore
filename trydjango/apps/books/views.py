@@ -15,7 +15,6 @@ database_url = os.getenv(
 )
 
 connection = psycopg2.connect(database_url)
-
 """
 proc = subprocess.Popen('heroku config:get DATABASE_URL -a yorkriverbookstore', stdout=subprocess.PIPE, shell=True)
 db_url = proc.stdout.read().decode('utf-8').strip()
