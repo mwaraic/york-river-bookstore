@@ -69,5 +69,16 @@ Purchase | Dashboard | York River Bookstore
   </div>
    
 {% endblock %}
-
+{% block local_style%}
+@media screen and (min-width: 1024px) and (-webkit-min-device-pixel-ratio: 1){
+  html{
+    width: 100%;
+    
+    overflow-x: hidden;  
+  }
+  body{
+    height:auto
+  }
+}
+{% endblock %}
  
