@@ -12,19 +12,18 @@ import psycopg2
 import os
 import subprocess
 from django_heroku import dj_database_url
+
 database_url = os.getenv(
     'DATABASE_URL'
 )
 
 connection = psycopg2.connect(database_url)
-
 """
 proc = subprocess.Popen('heroku config:get DATABASE_URL -a yorkriverbookstore', stdout=subprocess.PIPE, shell=True)
 db_url = proc.stdout.read().decode('utf-8').strip()
 
 connection = psycopg2.connect(db_url)
 """
-
 # Create your views here.
 
 
