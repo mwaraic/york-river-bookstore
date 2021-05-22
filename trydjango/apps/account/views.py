@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 import psycopg2
 import subprocess
-
 import os
 database_url = os.getenv(
     'DATABASE_URL'
