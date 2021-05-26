@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .cart import Cart
 from datetime import datetime 
 from django.contrib import messages
+import pytz
 # Create your views here.
 
 
@@ -41,9 +42,9 @@ def purchase(request):
      cart=Cart(request)
      
      value=datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
-      
+     timezone = pytz.timezone("America/New_York") 
      dt = datetime.strptime(value[:19], '%Y-%m-%d %H:%M:%S')
-     
+     dt=  timezone.localize(dt)
      for key, value in request.session['cart'].items():
       print(value)
       try:
