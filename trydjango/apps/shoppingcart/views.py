@@ -42,9 +42,9 @@ def purchase(request):
      cart=Cart(request)
      
      value=datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
-     timezone = pytz.timezone("America/New_York") 
+     
      dt = datetime.strptime(value[:19], '%Y-%m-%d %H:%M:%S')
-     dt=  timezone.localize(dt)
+     
      for key, value in request.session['cart'].items():
       print(value)
       try:
