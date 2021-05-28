@@ -55,12 +55,14 @@ Book | York River Bookstore
         <!-- Image -->
         <div class="col-12 col-lg-6">
             <div class="card bg-light mb-3">
+            {% for index in index%}
                 <div class="card-body">
                     <a href="" data-toggle="modal" data-target="#productModal">
-                        <img class="img-fluid" src="https://dummyimage.com/800x800/55595c/fff" />
+                        <img class="img-fluid" src="/static/images/Books/{{index.index}}.jpg" />
                         <p class="text-center">Zoom</p>
                     </a>
                 </div>
+                {%endfor%}
             </div>
         </div>
 
