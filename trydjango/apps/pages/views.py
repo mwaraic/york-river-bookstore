@@ -12,6 +12,7 @@ import psycopg2
 import os
 import subprocess
 from django_heroku import dj_database_url
+
 database_url = os.getenv(
     'DATABASE_URL'
 )

@@ -75,7 +75,7 @@ def book_detail_view(request,OfferID):
      
       cursor.execute("SELECT yrb_offer.offerid, yrb_offer.title, yrb_offer.price, yrb_offer.club, yrb_offer.year, yrb_book.cat, yrb_book.language, yrb_book.weight  from yrb_offer, yrb_book where yrb_offer.title=yrb_book.title and yrb_offer.year=yrb_book.year and yrb_offer.OfferID=%s;", [OfferID])
       Book=dictfetchall(cursor)
-      cursor.execute("SELECT v.index from yrb_offer,(select row_number() over (order by title) as index, title from yrb_book) as v where v.title=yrb_offer.title and yrb_offer.offerid=%s;",[OfferID])
+      cursor.execute("SELECT v.index from yrb_offer,(SELECT row_number() over (order by v.title) as index,v.title from (SELECT distinct(title) as title from yrb_book) as v) as v where v.title=yrb_offer.title and yrb_offer.offerid=%s;",[OfferID])
       index=dictfetchall(cursor)
       return render(request, 'book.html', {'book': Book, 'index':index})
     

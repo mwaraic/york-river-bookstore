@@ -1,0 +1,12 @@
+/* Webfont: Monicha */@font-face {
+    font-family: 'Monicha';
+    
+    src: 
+         url("Monicha.a7bf61cfeda7.woff") format('woff'), /* Modern Browsers */
+         url("Monicha.075903191555.woff2") format('woff2'), /* Modern Browsers */
+         url("Monicha.676a0d8da5d1.ttf") format('truetype'); /* Safari, Android, iOS */
+             font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
