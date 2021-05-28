@@ -20,8 +20,8 @@
     height: 200px;"src="/static/images/club/{{index.index}}.jpg">
         </div><br>
         {% else %}
-        <div class="image1">   
-        </div><br>
+        <img class="image1" src="/static/images/categories/{{cat}}.jpg" >   
+        <br>
         {% endif %}{%endfor%}
     
 
@@ -180,7 +180,6 @@ body {
     color: white !important;
 }
 .image1{
-background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/static/images/categories/{{cat}}.jpg");
 background-position:center;
 background-size: cover;
 background-repeat: no-repeat;
