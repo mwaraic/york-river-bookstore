@@ -62,6 +62,9 @@ class BookView(FilteredListView):
       clubindex=dictfetchall(cursor)
       cursor.execute("SELECT initcap(cat) as cat  from yrb_category order by cat;")
       all_categories=dictfetchall(cursor)
+      cursor.execute("SELECT v.index,yrb_offer.offerid from yrb_offer,(select row_number() over (order by title) as index, title from yrb_book) as v where v.title=yrb_offer.title;")
+      books=dictfetchall(cursor)
+      context['books']=books
       context['index']=clubindex
       context['all_categories']=all_categories
       context['club']=self.kwargs.get('club')
