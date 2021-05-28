@@ -71,7 +71,7 @@
                 {% for object in object_list%}
                 <div class="col-md-4 col-sm-6 col-12 mt-4">
                  {% for book in books%}
-                 {% if object.offerid=book.offerid%}
+                 {% if object.offerid == book.offerid%}
                     <div class="card h-100"> <img class="card-img-top" src="/static/images/Books/{{book.index}}.jpg">
                 {%endif%}
                 {%endfor%}
