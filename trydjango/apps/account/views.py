@@ -7,7 +7,7 @@ from django.contrib import messages
 import psycopg2
 import subprocess
 import os
-"""
+
 database_url = os.getenv(
     'DATABASE_URL'
 )
@@ -18,7 +18,7 @@ proc = subprocess.Popen('heroku config:get DATABASE_URL -a yorkriverbookstore', 
 db_url = proc.stdout.read().decode('utf-8').strip()
 
 connection = psycopg2.connect(db_url)
-
+"""
 # Create your views here.
 
 def account_create_view(request):
