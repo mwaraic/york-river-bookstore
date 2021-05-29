@@ -10,7 +10,25 @@
 {{club}} | York River Bookstore
 {%endblock%}
 {% block content%}
-
+ <div class="container" style= "text-align: center;"><br>
+    {% for index in index %}
+         <img class="card-img-top" style="width: 200px;
+    height: 200px;"src="/static/images/club/{{index.index}}.jpg">
+    {%endfor%}
+ </div><br>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a class="text-dark" href="{% url 'books:super' %}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{club}}</li>
+                    
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
 
 <div class="container mt-3"><br>
 <h3 class="text-center">CHOOSE A CATEGORY</h3><hr>
@@ -30,6 +48,7 @@
     
     
 </div>
+
 {% endblock %}
 
 {%block style%}

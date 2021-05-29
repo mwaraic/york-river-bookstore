@@ -41,8 +41,11 @@ def category_view(request, club):
     cursor.execute("SELECT row_number() over (order by cat) as index, initcap(cat) as cat  from yrb_category order by cat;")
     
     all_categories=dictfetchall(cursor)
+    cursor.execute("SELECT z.index from (SELECT row_number() over (order by club) as index, club from yrb_club) as z where z.club=%s;",[club])
+    clubindex=dictfetchall(cursor)
     context={ 'all_categories' : all_categories,
-              'club': club
+              'club': club,
+              'index':clubindex
                }
     return render(request, 'category.html', context)
 
