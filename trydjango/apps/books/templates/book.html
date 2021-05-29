@@ -42,7 +42,7 @@ Book | York River Bookstore
                     {% for book in book%}
                     <li class="breadcrumb-item"><a class="text-dark" href="{% url 'books:super' %}">Home</a></li>
                     <li class="breadcrumb-item"><a class="text-dark" href="{% url 'books:category' book.club %}">{{book.club}}</a></li>
-                    <li class="breadcrumb-item"><a class="text-dark" href="{% url 'books:booklist' book.club book.cat %}">{{book.cat|title}}</a></li>
+                    <li class="breadcrumb-item"><a class="text-dark" href="{% url 'books:booklist' book.club book.cat|title %}">{{book.cat|title}}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Book</li>
                     {% endfor %}
                 </ol>

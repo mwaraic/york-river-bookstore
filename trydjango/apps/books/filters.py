@@ -32,7 +32,7 @@ class FilteredListView(ListView):
     def get_queryset(self):
         # Get the queryset however you usually would.  For example:
         if(self.kwargs.get('cat')=='All'):
-            queryset = YrbOffer.objects.select_related('title__cat').filter(club=self.kwargs.get('club')).distinct()
+            queryset = YrbOffer.objects.select_related('title__cat').filter(club=self.kwargs.get('club'))
         else:
             queryset = YrbOffer.objects.select_related('title__cat').filter(title__cat=self.kwargs.get('cat').lower(),club=self.kwargs.get('club'))
         # Then use the query parameters and the queryset to
