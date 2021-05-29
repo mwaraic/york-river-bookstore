@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{% static '/css/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static '/css/font-awesome.css' %}">
     <link rel="stylesheet" href="{% static '/fonts/icomoon/style.css'%}">
-    <link href="http://fonts.cdnfonts.com/css/lauren-script" rel="stylesheet">
+   
     <!-- Bootstrap CSS -->
     {%block head%}
     {%endblock%}
@@ -204,7 +204,21 @@
     overflow-x: hidden;  
   }
 }
-
+/* Webfont: Monicha */@font-face {
+    font-family: 'Monicha';
+    src: url('{% static '/fonts/Monicha.woff'%}') format('woff'), /* Modern Browsers */
+         url('{% static '/fonts/Monicha.woff2'%}') format('woff2'), /* Modern Browsers */
+         url('{% static '/fonts/Monicha.ttf'%}') format('truetype'); /* Safari, Android, iOS */
+             font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+@font-face {
+    font-family: 'LaurenScript';
+    font-style: normal;
+    font-weight: 5;
+    src: local('LaurenScript'), url({% static '/fonts/LaurenScript.woff'%}) format('woff');
+}
 .hoop
 {
   background-color: #232F3E;
