@@ -76,7 +76,9 @@ class BookView(FilteredListView):
             cats.append(''.join(cat))
       cats.append('All')
       if self.kwargs.get('cat') not in cats:
-            raise Http404('Page does not exist') 
+            raise Http404('Page does not exist')
+      if clubindex ==[]:
+          raise Http404('Page does not exist') 
       context['index']=clubindex
       context['all_categories']=all_categories
       context['club']=self.kwargs.get('club')
