@@ -8,17 +8,17 @@
      <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link rel="stylesheet" href="{% static '/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static '/css/font-awesome.css' %}">
-    <link rel="stylesheet" href="{% static '/fonts/icomoon/style.css'%}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css'%}">
    
     <!-- Bootstrap CSS -->
     {%block head%}
     {%endblock%}
-    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     
     <!-- Style -->
-    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     
     <title>
     {% block title%}
@@ -115,11 +115,11 @@
     {%block content%}
     {% endblock %}
     </div>
-    <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static '/js/popper.min.js' %}"></script>
-    <script src="{% static '/js/bootstrap.min.js' %}"></script>
-    <script src="{% static '/js/jquery.sticky.js' %}"></script>
-    <script src="{% static '/js/main.js' %}"></script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.sticky.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
     
     {%block script%} 
     {%endblock%}
@@ -206,9 +206,9 @@
 }
 /* Webfont: Monicha */@font-face {
     font-family: 'Monicha';
-    src: url('{% static '/fonts/Monicha.woff'%}') format('woff'), /* Modern Browsers */
-         url('{% static '/fonts/Monicha.woff2'%}') format('woff2'), /* Modern Browsers */
-         url('{% static '/fonts/Monicha.ttf'%}') format('truetype'); /* Safari, Android, iOS */
+    src: url('{% static 'fonts/Monicha.woff'%}') format('woff'), /* Modern Browsers */
+         url('{% static 'fonts/Monicha.woff2'%}') format('woff2'), /* Modern Browsers */
+         url('{% static 'fonts/Monicha.ttf'%}') format('truetype'); /* Safari, Android, iOS */
              font-style: normal;
     font-weight: normal;
     text-rendering: optimizeLegibility;
@@ -217,7 +217,7 @@
     font-family: 'LaurenScript';
     font-style: normal;
     font-weight: 5;
-    src: local('LaurenScript'), url({% static '/fonts/LaurenScript.woff'%}) format('woff');
+    src: local('LaurenScript'), url({% static 'fonts/LaurenScript.woff'%}) format('woff');
 }
 .hoop
 {

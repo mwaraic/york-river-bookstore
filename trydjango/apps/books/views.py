@@ -9,6 +9,7 @@ import os
 from .filters import PriceFilter, FilteredListView
 import psycopg2
 import subprocess
+from django.http import Http404
 
 database_url = os.getenv(
     'DATABASE_URL'
@@ -43,6 +44,9 @@ def category_view(request, club):
     all_categories=dictfetchall(cursor)
     cursor.execute("SELECT z.index from (SELECT row_number() over (order by club) as index, club from yrb_club) as z where z.club=%s;",[club])
     clubindex=dictfetchall(cursor)
+    if clubindex ==[]:
+          raise Http404('Page does not exist')
+    
     context={ 'all_categories' : all_categories,
               'club': club,
               'index':clubindex
@@ -65,6 +69,14 @@ class BookView(FilteredListView):
       clubindex=dictfetchall(cursor)
       cursor.execute("SELECT initcap(cat) as cat  from yrb_category order by cat;")
       all_categories=dictfetchall(cursor)
+      cursor.execute("SELECT initcap(cat) as cat  from yrb_category order by cat;")
+      categories=cursor.fetchall()
+      cats=[]
+      for cat in categories:
+            cats.append(''.join(cat))
+      cats.append('All')
+      if self.kwargs.get('cat') not in cats:
+            raise Http404('Page does not exist') 
       context['index']=clubindex
       context['all_categories']=all_categories
       context['club']=self.kwargs.get('club')
