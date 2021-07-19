@@ -30,6 +30,7 @@
 			<a href="{% url 'books:super' %}"><h4 class="card-title text-white"><img src="/static/images/icon5.png" style="width:60px; height: 60px; margin-top: -8px" alt="">York River Bookstore</h4></a>
 	    </div>
 			<div class="card-body">
+                        {% include 'messages.html' %}
 				<form method="POST"> {% csrf_token %}
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
