@@ -34,7 +34,7 @@ urlpatterns = [
     path('account/clubs/', clubs_view, name='clubs'),
     path('books/',include('trydjango.apps.books.urls',namespace="books")),
     path('cart/',include('trydjango.apps.shoppingcart.urls',namespace="cart")),
-    path('', super_category_view, name="shop")
+    path('', index_view, name="shop")
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
