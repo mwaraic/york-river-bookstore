@@ -2,54 +2,38 @@
 {%load static%}
 {% block head%}
 
-<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 {% endblock%}
 
 {% block title %}
- Clubs | York River Bookstore
+ About | York River Bookstore
 {% endblock %}
 
 {% block content%}
 
     <div class="image1">  
         <p class="caption1">Our Clubs</p>  
-        </div>
-
-
+    </div>
+<div style="padding: 20px">
+<div class="accordion" id="accordionExample">
 {% for club in all_clubs %}
-<br><div class="container"> <hr class="new2">  
-  <div class="row1 all-devices"><span class="badge btn maaz" data-toggle-target="#{{club.club|slugify}}" data-toggle-text"Read less" >> {{club.club}}</span>
-  <div id="{{club.club|slugify}}"  class="panel panel-primary">
-     <div>
-        <p class="ace">{{club.desp}}</p>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="{{club.club|slugify}}1">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{club.club|slugify}}" aria-expanded="true" aria-controls="collapseOne">
+        {{club.club}}
+      </button>
+    </h2>
+    <div id="{{club.club|slugify}}" class="accordion-collapse collapse" aria-labelledby="{{club.club|slugify}}1" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        {{club.desp}}
       </div>
     </div>
   </div>
-</div>
+
 {% endfor %}
-<br>
-
-
+</div>
+</div>
 {% endblock %}
-{%block script%} 
-
-<script src="{%static 'js/jquery.declarativeToggle.js'%}"></script>
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-36251023-1']);
-  _gaq.push(['_setDomainName', 'jqueryscript.net']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-
-  {%endblock%}
 
 {%block style%}
 
@@ -94,34 +78,6 @@
   }
 }
 
-/* declarativeToggle Styles to copy and paste */
-
- @media screen and (max-width: 767px) {
-
-.toggle-btn-visible {
-  position: static;
-  visibility: visible;
-}
-
-.toggle-target-hidden { display: none; }
-
-.toggle-target-expanded { display: block; }
-}
-
-.all-devices .toggle-btn-visible {
-  position: static;
-  visibility: visible;
-}
-body {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #333;
-    background-color: #fff;
-}
-.all-devices .toggle-target-hidden { display: none; }
-
-.all-devices .toggle-target-expanded { display: block; }
 
 .pad{
   padding: 50px 50px;

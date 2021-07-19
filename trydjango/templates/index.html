@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
     <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css'%}">
-   
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Bootstrap CSS -->
     {%block head%}
     {%endblock%}
@@ -26,89 +26,59 @@
     </title>
   </head>
   <body>
-
-    <div class="hoop content1">
-    <div class="site-mobile-menu">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #232F3E;" >
+<div class="container-fluid">
+ <a class="navbar-brand text-white" href="{% url 'books:super' %}">
+    <img src="/static/images/icon5.png" style="width:50px; height: 50px; margin-top: -8px;" alt="">
+    <span>York River Bookstore</span>
+  </a>
+ 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+       <a class="nav-link text-white"  href="{% url 'club' %}"><span>About</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span>Clubs</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'books:booklist' 'AAA' 'All' %}">AAA</a>
+                    <a class="dropdown-item" href="{% url 'books:booklist' 'AARP' 'All' %}">AARP</a>
+                    <a class="dropdown-item" href="{% url 'books:booklist' 'Basic' 'All' %}">Basic</a>
+                    <a class="dropdown-item" href="{% url 'books:booklist' 'CNU Club' 'All' %}">CNU Club</a>
+                    <a class="dropdown-item" href="{% url 'books:booklist' 'Oprah' 'All' %}">Oprah</a>
+                    <a class="dropdown-item" href="{% url 'books:booklist' 'Readers Digest' 'All' %}">Readers Digest</a>
+                    <a class="dropdown-item" href="{% url 'books:booklist' 'UVA Club' 'All' %}">UVA Club</a>
+                    <a class="dropdown-item" href="{% url 'books:booklist' 'VaTech Club' 'All' %}">VaTech Club</a>
+                    <a class="dropdown-item" href="{% url 'books:booklist' 'W&M Club' 'All' %}">W&M Club</a>
+                    <a class="dropdown-item" href="{% url 'books:booklist' 'YRB_Bronze' 'All' %}">YRB Bronze</a>
+                    <a class="dropdown-item" href="{% url 'books:booklist' 'YRB_Gold' 'All' %}">YRB Gold</a>
+                    <a class="dropdown-item" href="{% url 'books:booklist' 'YRB_Silver' 'All' %}">YRB Silver</a>
         </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div>
-    
-    <header class="site-navbar" role="banner">
-
-      <div class="container">
-        <div class="row align-items-center">
-          
-          <div class="d-inline-block d-xl-none ml-md-0 mr-auto" style="position: relative; margin-left: 10px;">
-          <a href="{% url 'shop' %}"><img style="width:50px; height: 60px; margin-top: -10px;"src="/static/images/icon5.png" alt=""/></a>
-          </div>
-          <div class="col-12 col-md-15 d-none d-xl-block"> 
-          <div class="haus col-10 col-xl">
-          <a href="{% url 'shop' %}"><img style="width:300px; height: 80px; margin-top: -15px; margin-left: -20px;"src="/static/images/logo4.png"/></a>
-          </div>
-            <nav class="site-navigation position-relative text-right" role="navigation">
-
-              <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                
-                <li class="has-children">
-                  <a href="{% url 'books:super' %}"><span>Clubs</span></a>
-                  <ul class="dropdown arrow-top">
-                   
-                        <li><a href="{% url 'books:booklist' 'AAA' 'All' %}">AAA</a></li>
-                    <li><a href="{% url 'books:booklist' 'AARP' 'All' %}">AARP</a></li>
-                    <li><a href="{% url 'books:booklist' 'Basic' 'All' %}">Basic</a></li>
-                    <li><a href="{% url 'books:booklist' 'CNU Club' 'All' %}">CNU Club</a></li>
-                    <li><a href="{% url 'books:booklist' 'Oprah' 'All' %}">Oprah</a></li>
-                    <li><a href="{% url 'books:booklist' 'Readers Digest' 'All' %}">Readers Digest</a></li>
-                    <li><a href="{% url 'books:booklist' 'UVA Club' 'All' %}">UVA Club</a></li>
-                    <li><a href="{% url 'books:booklist' 'VaTech Club' 'All' %}">VaTech Club</a></li>
-                    <li><a href="{% url 'books:booklist' 'W&M Club' 'All' %}">W&M Club</a></li>
-                    <li><a href="{% url 'books:booklist' 'YRB_Bronze' 'All' %}">YRB Bronze</a></li>
-                    <li><a href="{% url 'books:booklist' 'YRB_Gold' 'All' %}">YRB Gold</a></li>
-                    <li><a href="{% url 'books:booklist' 'YRB_Silver' 'All' %}">YRB Silver</a></li>
-                    
-                  </ul>
-                </li>
-                
-                <li class="has-children"><a href="#"><span>Store Info</span></a>
-                <ul class="dropdown arrow-top">
-                   
-                        <li><a href="{% url 'club' %}">About us</a></li>
-                
-                </ul></li>
-                <li><a href="{% url 'cart:cart_detail' %}"><span><i class="fa fa-shopping-cart"></i> {{request.session.cart|length}} | ${{cart_subtotal_amount|floatformat:2}} </span></a></li>
-                
-                {% if request.user.is_authenticated %}
-                <li class="has-children">
-                 <a href="{% url 'home' %}"><span>Hello, {{request.user}}</span></a>
-                  <ul class="dropdown arrow-top">
-                    <li><a href="{% url 'home' %}"><span class="fa fa-user"></span> Profile</a></li>
-                    <li><a href="{% url 'clubs' %}"><span class="fa fa-users"> Clubs</a></li>
-                    <li><a href="{% url 'purchase' %}"><span class="fa fa-shopping-cart"></span> Purchases</a></li>
-                    <li><a href="{% url 'logout' %}"><span class="fa fa-sign-out"> Sign out</a></li>
-                    </li></ul>
+      </li> <li class="nav-item "><a  class="nav-link text-white" href="{% url 'cart:cart_detail' %}"><span><i class="fa fa-shopping-cart"></i> {{request.session.cart|length}} | ${{cart_subtotal_amount|floatformat:2}} </span></a></li>
+       {% if request.user.is_authenticated %}
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white" href="{% url 'home' %}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <span>Hello, {{request.user}}</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'home' %}"><span class="fa fa-user"></span> Profile</a>
+                    <a class="dropdown-item" href="{% url 'clubs' %}"><span class="fa fa-users"> Clubs</a>
+                    <a class="dropdown-item" href="{% url 'purchase' %}"><span class="fa fa-shopping-cart"></span> Purchases</a>
+                    <a class="dropdown-item" href="{% url 'logout' %}"><span class="fa fa-sign-out"> Sign out</a>
+                  
                 {%else%}
                 
-                <li><a href="{% url 'account_login' %}"><span>Sign in</span></a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="{% url 'account_login' %}"><span>Sign in</span></a></li>
                 {% endif%}
-              </ul>
-            </nav>
-          </div>
-
-
-          <div class="d-inline-block d-xl-none ml-auto" style="position: relative; right:50px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
-
-          </div>
-
-        </div>
-      </div>
-      
-    </header>
-    
-    </div>
+     
+    </ul>
+  </div> 
+</nav>
     
     <div class="container1">
     {% include 'messages.html' %}
@@ -120,7 +90,7 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/jquery.sticky.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     {%block script%} 
     {%endblock%}
     
@@ -131,7 +101,11 @@
   </body>
 
   <style>
-  
+
+.navbar-nav > li{
+  padding-left:20px;
+  padding-right:20px;
+}
 
 @media screen and (width: 768px) and (orientation:potrait) {
   html{
@@ -222,13 +196,7 @@
     font-weight: 5;
     src: local('LaurenScript'), url({% static 'fonts/LaurenScript.woff'%}) format('woff');
 }
-.hoop
-{
-  background-color: #232F3E;
-    width: 100%;
-    height: 100px;
- 
-  }
+
  body{
 height: 100%;
  }
