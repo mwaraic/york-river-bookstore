@@ -23,7 +23,7 @@
         {{club.club}}
       </button>
     </h2>
-    <div id="{{club.club|slugify}}" class="accordion-collapse collapse" aria-labelledby="{{club.club|slugify}}1" data-bs-parent="#accordionExample">
+    <div id="{{club.club|slugify}}" class="accordion-collapse collapse" aria-labelledby="{{club.club|slugify}}1">
       <div class="accordion-body">
         {{club.desp}}
       </div>
@@ -36,52 +36,6 @@
 {% endblock %}
 
 {%block style%}
-
-@media screen and (width: 1024px) and (orientation:landscape) {
-  html{
-    width: 100%;
-    height:100%;
-    overflow-x: hidden;  
-  }
-  body{
-    height:auto;
-  }
-}
-@media screen and (min-width: 1366px) and (-webkit-min-device-pixel-ratio: 1.5){
-  html{
-    width: 100%;
-    height:100%;
-    overflow-x: hidden;  
-  }
-  body{
-    height:auto;
-  }
-  
-}
-@media screen and (min-width: 1024px) and (-webkit-min-device-pixel-ratio: 1.5){
-  html{
-    width: 100%;
-    height:100%;
-    overflow-x: hidden;  
-  }
-  body{
-    height:auto;
-  }
-  
-}
-@media screen and (width: 768px){
- 
-  html{
-    width: 100%;
-    
-    overflow-x: hidden;  
-  }
-}
-
-
-.pad{
-  padding: 50px 50px;
-}
 
 .caption1 {
    font-family: 'Playfair Display', serif;
@@ -108,22 +62,6 @@ width: 100%;
 height: 400px;
   }
   
-
-
-hr.new2 {
-  border-top: 1px dashed black;
-}
-.maaz{
-color: black;
-font-size: 25px;
-
-}
-.ace{
-color: black;
-font-size: 15px;
-border-left: solid red;
-padding: 10px;
-margin: 15px;}
 
 
 {%endblock%}
