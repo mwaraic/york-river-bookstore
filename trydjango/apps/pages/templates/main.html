@@ -51,7 +51,11 @@ a:hover {
         font-size:75px;
     }
 }
-
+@media screen and (max-width:767px) {
+body {
+	overflow: hidden visible;
+}
+}
 @media screen and (max-width: 281px) {
     .display-1{
         font-size:65px;
@@ -63,22 +67,10 @@ h1{font-family: 'Sorts Mill Goudy', serif;}
 h2{ font-size: 25px; font-family: 'Sorts Mill Goudy', serif; margin-bottom: 20}
 
 .container {
-  height: 100vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:#292b2c;
-    color: #fff;
-    z-index: -10;
-    background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://scholarlykitchen.sspnet.org/wp-content/uploads/2018/07/iStock-506432952.jpg");
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-background-attachment: fixed;
-   -webkit-background-size: cover;
-   -moz-background-size: cover;
-   -o-background-size: cover;
-    overflow-x: hidden !important;
 }
 
 /* Custom default button */
@@ -95,9 +87,16 @@ background-attachment: fixed;
  * Base structure
  */
 
-html,body {
-height: 100%;
- 
+body {
+  height: 100vh;
+  background-color:#292b2c;
+  color: #fff;
+  background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://scholarlykitchen.sspnet.org/wp-content/uploads/2018/07/iStock-506432952.jpg");
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:center;
+  background-attachment: fixed;
+  
 }
 
 .cover-container {
