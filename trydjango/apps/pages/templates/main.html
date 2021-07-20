@@ -49,29 +49,30 @@ a:hover {
 @media screen and (max-width: 376px) {
     .display-1{
         font-size:75px;
-      }
-
-body {
-  background-size:contain
-  }
+    }
 }
-
+@media screen and (max-width:767px) {
+body {
+	overflow: hidden visible;
+}
+}
 @media screen and (max-width: 281px) {
     .display-1{
         font-size:65px;
     }
-    body {
-  background-size:contain
-  }
 }
+
 h1{font-family: 'Sorts Mill Goudy', serif;}
+
 h2{ font-size: 25px; font-family: 'Sorts Mill Goudy', serif; margin-bottom: 20}
+
 .container {
-    height: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 /* Custom default button */
 .btn-secondary,
 .btn-secondary:hover,
@@ -92,10 +93,11 @@ body {
   color: #fff;
   background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://scholarlykitchen.sspnet.org/wp-content/uploads/2018/07/iStock-506432952.jpg");
 background-size: cover;
-background-position: center center;
-background-repeat: bottom center no-repeat;
-
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;
 }
+
 .cover-container {
   max-width: 42em;
 }
