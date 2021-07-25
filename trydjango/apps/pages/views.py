@@ -96,16 +96,10 @@ def clubs_view(request):
    YrbMember.objects.create(cid=YrbCustomer.objects.get(cid=request.user.id),club=YrbClub.objects.get(club=form.data['club']))
    messages.success(request, 'Club was added successfully')    
    return redirect('clubs')
-  
 
-  with connection.cursor() as cursor:
-    
-       cursor.execute("SELECT distinct(yrb_member.club) from yrb_member where yrb_member.cid= %s order by yrb_member.club;", [request.user.id])
-       all_clubs=dictfetchall(cursor)
-       
-       context={ 'all_clubs' : all_clubs,
+  context={ 'all_clubs' : YrbMember.objects.filter(cid=request.user.id),
               'nbar': 'clubs',
               'form': form
                }
-       return render(request, 'clubs.html', context)  
+  return render(request, 'clubs.html', context)  
     

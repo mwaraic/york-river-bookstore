@@ -7,14 +7,12 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 {%endblock%}
 {% block title%}
-{{club}} | York River Bookstore
+{{club.club|capfirst}} | York River Bookstore
 {%endblock%}
 {% block content%}
  <div class="container" style= "text-align: center;"><br>
-    {% for index in index %}
          <img class="card-img-top" style="width: 200px;
-    height: 200px;"src="/static/images/club/{{index.index}}.jpg">
-    {%endfor%}
+    height: 200px;"src="/static/images/club/{{club.club|slugify}}.jpg">
  </div><br>
 <div class="container">
     <div class="row">
@@ -22,7 +20,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a class="text-dark" href="{% url 'books:super' %}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{club}}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{club.club}}</li>
                     
                 </ol>
             </nav>
@@ -36,9 +34,9 @@
     <div class="row">
     {%for category in all_categories %}
       <div class="col-lg-3 col-md-6 offset-md-0 offset-sm-1 col-sm-10 offset-sm-1 my-lg-0 my-2">
-       <div class="card"> <img class="card-img-top" src="/static/images/cat/{{category.index}}.jpg">
+       <div class="card"> <img class="card-img-top" src="/static/images/cat/{{category.cat}}.jpg">
                 
-                <div class="card-body text-center"> <h6>{{category.cat}}</h6><a href="{% url 'books:booklist' club category.cat  %}" class="stretched-link"></a>
+                <div class="card-body text-center"> <h6>{{category.cat| capfirst}}</h6><a href="{% url 'books:booklist' club.club category.cat|capfirst  %}" class="stretched-link"></a>
                 </div>
             </div>
         </div>

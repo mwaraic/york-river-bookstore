@@ -42,7 +42,7 @@ Book | York River Bookstore
                     {% for book in book%}
                     <li class="breadcrumb-item"><a class="text-dark" href="{% url 'books:super' %}">Home</a></li>
                     <li class="breadcrumb-item"><a class="text-dark" href="{% url 'books:category' book.club %}">{{book.club}}</a></li>
-                    <li class="breadcrumb-item"><a class="text-dark" href="{% url 'books:booklist' book.club book.cat|title %}">{{book.cat|title}}</a></li>
+                    <li class="breadcrumb-item"><a class="text-dark" href="{% url 'books:booklist' book.club book.title_id__cat|title %}">{{book.title_id__cat|title}}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Book</li>
                     {% endfor %}
                 </ol>
@@ -82,9 +82,9 @@ Book | York River Bookstore
                     {% csrf_token %}
                         <div class="form-group">
                             Language: {{book.language}}<br> 
-                            Category: {{book.cat|title}}<br>
+                            Category: {{book.title_id__cat|title}}<br>
                             Published in {{book.year}} <br>
-                            Weight: {{book.weight}} g
+                            Weight: {{book.title_id__weight}} g
                             
                         </div>
                        

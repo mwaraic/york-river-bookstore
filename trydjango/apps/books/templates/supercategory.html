@@ -18,7 +18,7 @@ Clubs | York River Bookstore
     <div class="row">
     {%for club in all_clubs %}
       <div class="col-lg-3 col-md-6 offset-md-0 offset-sm-1 col-sm-10 offset-sm-1 my-lg-0 my-2">
-       <div class="card"> <img class="card-img-top" src="/static/images/club/{{club.index}}.jpg">
+       <div class="card"> <img class="card-img-top" src="/static/images/club/{{club.club|slugify}}.jpg">
                 <div class="card-body"><a href="{% url 'books:category' club.club %}" class="stretched-link"></a>
                 </div>
             </div>

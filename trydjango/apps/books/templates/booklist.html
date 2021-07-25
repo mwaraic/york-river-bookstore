@@ -10,21 +10,20 @@
 <!------ Include the above in your HEAD tag ---------->
 {%endblock%}
 {% block title%}
-{{club}} | {{cat}} | York River Bookstore
+{{club}} | {{cat|capfirst}} | York River Bookstore
 {%endblock%}
 {% block content%}
 
     <div class="container" style= "text-align: center;"><br>
-    {% for index in index %}
         {% if cat == "All" %}
          <img class="card-img-top" style="width: 200px;
-    height: 200px;"src="/static/images/club/{{index.index}}.jpg">
+    height: 200px;"src="/static/images/club/{{club|slugify}}.jpg">
     
         {% else %}
          <img class="card-img-top" style="width: 200px;
-    height: 200px;"src="/static/images/club/{{index.index}}.jpg">
+    height: 200px;"src="/static/images/club/{{club|slugify}}.jpg">
          <h1 class="fontsloaded">{{cat|title}}</h1>
-        {% endif %}{%endfor%}
+        {% endif %}
     </div><br>
 
 <div class="container">

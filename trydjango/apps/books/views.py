@@ -2,7 +2,7 @@ from trydjango.settings import DATABASES
 from typing import BinaryIO
 
 from django.contrib.messages import default_app_config
-from trydjango.apps.yrb.models import YrbOffer, YrbClub, YrbCategory
+from trydjango.apps.yrb.models import YrbBook, YrbOffer, YrbClub, YrbCategory, YrbPurchase
 from django.shortcuts import render
 from trydjango.apps.yrb.dbpostgres import dictfetchall
 import os
@@ -26,33 +26,44 @@ connection = psycopg2.connect(db_url)
 
 def super_category_view(request):
  
-   with connection.cursor() as cursor:
-    cursor.execute("SELECT row_number() over (order by club) as index, club from yrb_club order by club;")
-   
-    all_clubs=dictfetchall(cursor)
+    all_clubs=YrbClub.objects.all()
     context={ 'all_clubs' : all_clubs
                }
+    YrbPurchase.objects.filter(title='Are my feet too big?').delete()
+    YrbOffer.objects.filter(title='Are my feet too big?').delete()
+    YrbBook.objects.filter(title='Are my feet too big?').delete()
+    YrbPurchase.objects.filter(title='Rabbits are nice').delete()
+    YrbOffer.objects.filter(title='Rabbits are nice').delete()
+    YrbBook.objects.filter(title='Rabbits are nice').delete()
+    YrbPurchase.objects.filter(title='Math is fun!').delete()
+    YrbOffer.objects.filter(title='Math is fun!').delete()
+    YrbBook.objects.filter(title='Math is fun!').delete()
+    YrbPurchase.objects.filter(title='Rats Like Us').delete()
+    YrbOffer.objects.filter(title='Rats Like Us').delete()
+    YrbBook.objects.filter(title='Rats Like Us').delete()
+    YrbPurchase.objects.filter(title='Tampopo Oishii').delete()
+    YrbOffer.objects.filter(title='Tampopo Oishii').delete()
+    YrbBook.objects.filter(title='Tampopo Oishii').delete()
+    YrbPurchase.objects.filter(title='Vegetables are Good!').delete()
+    YrbOffer.objects.filter(title='Vegetables are Good!').delete()
+    YrbBook.objects.filter(title='Vegetables are Good!').delete()
+    YrbPurchase.objects.filter(title='Where are my Socks?').delete()
+    YrbOffer.objects.filter(title='Where are my Socks?').delete()
+    YrbBook.objects.filter(title='Where are my Socks?').delete()
     return render(request, 'supercategory.html', context)
 
   
 def category_view(request, club):
    try: 
-           YrbClub.objects.get(club=club)
+           club=YrbClub.objects.get(club=club)
    except:
           raise Http404('Page does not exist') 
-   
-   with connection.cursor() as cursor:
-    cursor.execute("SELECT row_number() over (order by cat) as index, initcap(cat) as cat  from yrb_category order by cat;")
+       
     
-    all_categories=dictfetchall(cursor)
-    cursor.execute("SELECT z.index from (SELECT row_number() over (order by club) as index, club from yrb_club) as z where z.club=%s;",[club])
-    clubindex=dictfetchall(cursor)
-    
-    context={ 'all_categories' : all_categories,
-              'club': club,
-              'index':clubindex
+   context={ 'all_categories' : YrbCategory.objects.all(),
+             'club': club
                }
-    return render(request, 'category.html', context)
+   return render(request, 'category.html', context)
 
 
 class BookView(FilteredListView):
@@ -71,32 +82,19 @@ class BookView(FilteredListView):
     except:
           raise Http404('Page does not exist')
     
-   
-    with connection.cursor() as cursor:
-      cursor.execute("SELECT z.index from (SELECT row_number() over (order by club) as index, club from yrb_club) as z where z.club=%s;",[self.kwargs.get('club')])
-      clubindex=dictfetchall(cursor)
-      cursor.execute("SELECT initcap(cat) as cat  from yrb_category order by cat;")
-      all_categories=dictfetchall(cursor)
-      
-      context['index']=clubindex
-      context['all_categories']=all_categories
-      context['club']=self.kwargs.get('club')
-      context['cat']=self.kwargs.get('cat')
-      return context
+    context['all_categories']=YrbCategory.objects.all()
+    context['club']=self.kwargs.get('club')
+    context['cat']=self.kwargs.get('cat')
+    return context
 
 def book_detail_view(request,OfferID):
      try: 
-           YrbOffer.objects.get(offerid=OfferID)
+           YrbOffer.objects.get(pk=OfferID)
      except:
           raise Http404('Page does not exist')
-     with connection.cursor() as cursor:
-      
-      cursor.execute("SELECT yrb_offer.offerid, yrb_offer.title, yrb_offer.price, yrb_offer.club, yrb_offer.year, yrb_book.cat, yrb_book.language, yrb_book.weight  from yrb_offer, yrb_book where yrb_offer.title=yrb_book.title and yrb_offer.year=yrb_book.year and yrb_offer.OfferID=%s;", [OfferID])
-      Book=dictfetchall(cursor)
-      return render(request, 'book.html', {'book': Book})
-    
- 
-    
+     book=YrbOffer.objects.filter(pk=OfferID).values('offerid', 'title', 'price', 'club', 'year', 'title_id__cat', 'title_id__language', 'title_id__weight')
+     return render(request, 'book.html', {'book': book})
+
 
 
     
