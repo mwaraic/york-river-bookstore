@@ -13,6 +13,12 @@ import django_heroku
 import dj_database_url
 from pathlib import Path
 import os, sys
+from whitenoise.storage import CompressedManifestStaticFilesStorage
+
+
+class WhiteNoiseStaticFilesStorage(CompressedManifestStaticFilesStorage):
+    manifest_strict = False
+
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -192,7 +198,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static')
 ]
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'trydjango.storage.WhiteNoiseStaticFilesStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR,"media")
 MEDIA_URL = "/media/"
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
