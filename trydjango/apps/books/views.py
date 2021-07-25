@@ -29,27 +29,6 @@ def super_category_view(request):
     all_clubs=YrbClub.objects.all()
     context={ 'all_clubs' : all_clubs
                }
-    YrbPurchase.objects.filter(title='Are my feet too big?').delete()
-    YrbOffer.objects.filter(title='Are my feet too big?').delete()
-    YrbBook.objects.filter(title='Are my feet too big?').delete()
-    YrbPurchase.objects.filter(title='Rabbits are nice').delete()
-    YrbOffer.objects.filter(title='Rabbits are nice').delete()
-    YrbBook.objects.filter(title='Rabbits are nice').delete()
-    YrbPurchase.objects.filter(title='Math is fun!').delete()
-    YrbOffer.objects.filter(title='Math is fun!').delete()
-    YrbBook.objects.filter(title='Math is fun!').delete()
-    YrbPurchase.objects.filter(title='Rats Like Us').delete()
-    YrbOffer.objects.filter(title='Rats Like Us').delete()
-    YrbBook.objects.filter(title='Rats Like Us').delete()
-    YrbPurchase.objects.filter(title='Tampopo Oishii').delete()
-    YrbOffer.objects.filter(title='Tampopo Oishii').delete()
-    YrbBook.objects.filter(title='Tampopo Oishii').delete()
-    YrbPurchase.objects.filter(title='Vegetables are Good!').delete()
-    YrbOffer.objects.filter(title='Vegetables are Good!').delete()
-    YrbBook.objects.filter(title='Vegetables are Good!').delete()
-    YrbPurchase.objects.filter(title='Where are my Socks?').delete()
-    YrbOffer.objects.filter(title='Where are my Socks?').delete()
-    YrbBook.objects.filter(title='Where are my Socks?').delete()
     return render(request, 'supercategory.html', context)
 
   

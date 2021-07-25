@@ -81,7 +81,7 @@ Book | York River Bookstore
                     <form method="POST" action="{% url 'cart:cart_add' book.offerid %}">
                     {% csrf_token %}
                         <div class="form-group">
-                            Language: {{book.language}}<br> 
+                            Language: {{book.title_id__language}}<br> 
                             Category: {{book.title_id__cat|title}}<br>
                             Published in {{book.year}} <br>
                             Weight: {{book.title_id__weight}} g
