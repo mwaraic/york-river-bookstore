@@ -84,7 +84,6 @@ INSTALLED_APPS = [
     'trydjango.apps.books',
     'trydjango.apps.books.templatetags.my_tags',
     'trydjango.apps.shoppingcart.templatetags.cart_tag',
-    
     'trydjango.apps.shoppingcart',
     'whitenoise.runserver_nostatic'   
 ]
@@ -192,7 +191,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'root')
 STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static')
 ]
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR,"media")
 MEDIA_URL = "/media/"
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
