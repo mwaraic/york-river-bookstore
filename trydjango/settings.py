@@ -12,12 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import django_heroku
 import dj_database_url
 from pathlib import Path
-import os, sys
-from whitenoise.storage import CompressedManifestStaticFilesStorage
-
-
-class WhiteNoiseStaticFilesStorage(CompressedManifestStaticFilesStorage):
-    manifest_strict = False
+import os
 
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
@@ -198,7 +193,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static')
 ]
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+#STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR,"media")
 MEDIA_URL = "/media/"
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
