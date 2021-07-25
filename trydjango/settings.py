@@ -76,7 +76,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'trydjango.apps.yrb',
-    'trydjango.apps.pages',
+    'trydjango.apps.dashboard',
     'trydjango.apps.account',
     'widget_tweaks',
     'django_filters',
