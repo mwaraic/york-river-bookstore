@@ -36,7 +36,7 @@
       <div class="col-lg-3 col-md-6 offset-md-0 offset-sm-1 col-sm-10 offset-sm-1 my-lg-0 my-2">
        <div class="card"> <img class="card-img-top" src="/static/images/cat/{{category.cat}}.jpg">
                 
-                <div class="card-body text-center"> <h6>{{category.cat| capfirst}}</h6><a href="{% url 'books:booklist' club.club category.cat|capfirst  %}" class="stretched-link"></a>
+                <div class="card-body text-center"> <h6>{{category.cat| capfirst}}</h6><a href="{% url 'books:booklist' club.club category.cat|slugify  %}" class="stretched-link"></a>
                 </div>
             </div>
         </div>
