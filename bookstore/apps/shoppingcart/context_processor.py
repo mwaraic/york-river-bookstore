@@ -1,5 +1,5 @@
 from .cart import Cart
-from trydjango.apps.yrb.models import YrbShipping
+from bookstore.apps.yrb.models import YrbShipping
 
 
 def cart_total_amount(request):

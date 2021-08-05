@@ -1,11 +1,11 @@
-from trydjango.apps.yrb.models import YrbClub, YrbCustomer, YrbMember
+from bookstore.apps.yrb.models import YrbClub, YrbCustomer, YrbMember
 from django import forms
 from django.contrib.auth.models import User
 from django.forms import widgets, TextInput, CharField, Widget
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 
-from trydjango.settings import AUTH_PASSWORD_VALIDATORS
+from bookstore.settings import AUTH_PASSWORD_VALIDATORS
 
 class UserForm(forms.ModelForm):
     class Meta:

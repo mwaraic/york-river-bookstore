@@ -3,7 +3,7 @@ from django.forms import fields, widgets
 from django.utils.functional import empty
 import django_filters 
 from django_filters.filters import NumberFilter
-from trydjango.apps.yrb.models import YrbClub, YrbMember, YrbOffer, YrbPurchase
+from bookstore.apps.yrb.models import YrbClub, YrbMember, YrbOffer, YrbPurchase
 from django import forms
 import datetime
 from django.views.generic import ListView

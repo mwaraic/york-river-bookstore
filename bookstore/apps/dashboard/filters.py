@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.forms import widgets
 import django_filters
-from trydjango.apps.yrb.models import YrbClub, YrbMember, YrbPurchase
+from bookstore.apps.yrb.models import YrbClub, YrbMember, YrbPurchase
 from django import forms
 import datetime
 

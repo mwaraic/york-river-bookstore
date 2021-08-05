@@ -1,4 +1,4 @@
-from trydjango.apps.yrb.models import YrbOffer, YrbClub, YrbCategory
+from bookstore.apps.yrb.models import YrbOffer, YrbClub, YrbCategory
 from django.shortcuts import render
 from .filters import PriceFilter, FilteredListView
 from django.http import Http404

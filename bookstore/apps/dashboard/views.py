@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from trydjango.apps.yrb.models import YrbClub, YrbPurchase,YrbCustomer, YrbMember
+from bookstore.apps.yrb.models import YrbClub, YrbPurchase,YrbCustomer, YrbMember
 from django.contrib.auth.decorators import login_required
 from .filters import PurchaseFilter
 import datetime

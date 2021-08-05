@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render
 from .forms import UserForm
-from trydjango.apps.yrb.models import YrbClub, YrbCustomer, YrbMember
+from bookstore.apps.yrb.models import YrbClub, YrbCustomer, YrbMember
 from django.contrib.auth.models import User
 from django.contrib import messages
 

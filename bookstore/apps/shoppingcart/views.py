@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
-from trydjango.apps.yrb.models import YrbBook, YrbOffer, YrbPurchase
+from bookstore.apps.yrb.models import YrbBook, YrbOffer, YrbPurchase
 from django.contrib.auth.decorators import login_required
 from .cart import Cart
 from datetime import datetime 
