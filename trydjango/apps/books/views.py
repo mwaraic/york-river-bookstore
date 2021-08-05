@@ -1,28 +1,8 @@
-from trydjango.settings import DATABASES
-from typing import BinaryIO
-
-from django.contrib.messages import default_app_config
-from trydjango.apps.yrb.models import YrbBook, YrbOffer, YrbClub, YrbCategory, YrbPurchase
+from trydjango.apps.yrb.models import YrbOffer, YrbClub, YrbCategory
 from django.shortcuts import render
-from trydjango.apps.yrb.dbpostgres import dictfetchall
-import os
 from .filters import PriceFilter, FilteredListView
-import psycopg2
-import subprocess
 from django.http import Http404
 
-database_url = os.getenv(
-    'DATABASE_URL'
-)
-
-connection = psycopg2.connect(database_url)
-"""
-proc = subprocess.Popen('heroku config:get DATABASE_URL -a yorkriverbookstore', stdout=subprocess.PIPE, shell=True)
-db_url = proc.stdout.read().decode('utf-8').strip()
-
-connection = psycopg2.connect(db_url)
-"""
-# Create your views here.
 
 def super_category_view(request):
  

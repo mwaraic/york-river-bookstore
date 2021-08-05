@@ -81,7 +81,6 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_filters',
     'tempus_dominus',
-    'daterange_filter',
     'trydjango.apps.books',
     'trydjango.apps.books.templatetags.my_tags',
     'trydjango.apps.shoppingcart.templatetags.cart_tag',

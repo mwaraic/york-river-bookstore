@@ -4,22 +4,6 @@ from .forms import UserForm
 from trydjango.apps.yrb.models import YrbClub, YrbCustomer, YrbMember
 from django.contrib.auth.models import User
 from django.contrib import messages
-import psycopg2
-import subprocess
-import os
-
-database_url = os.getenv(
-    'DATABASE_URL'
-)
-
-connection = psycopg2.connect(database_url)
-"""
-proc = subprocess.Popen('heroku config:get DATABASE_URL -a yorkriverbookstore', stdout=subprocess.PIPE, shell=True)
-db_url = proc.stdout.read().decode('utf-8').strip()
-
-connection = psycopg2.connect(db_url)
-"""
-# Create your views here.
 
 def account_create_view(request):
     if request.user.is_authenticated:

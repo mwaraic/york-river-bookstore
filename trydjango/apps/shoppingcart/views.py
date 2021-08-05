@@ -5,9 +5,6 @@ from django.contrib.auth.decorators import login_required
 from .cart import Cart
 from datetime import datetime 
 from django.contrib import messages
-import pytz
-# Create your views here.
-
 
 @login_required(login_url="account_login")
 def cart_add(request, offerid):
