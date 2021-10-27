@@ -23,6 +23,7 @@ from bookstore.apps.account.views import account_create_view, account_login_view
 
 admin.autodiscover()
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path('club/', club_view, name='club'),
     path('account_create/', account_create_view, name='account_create'),
     path('account_login/', account_login_view, name='account_login'), 
