@@ -35,5 +35,6 @@ def clean_tables():
 
     print("Tables cleaned successfully!")
 
-# Call the clean_tables function to perform the cleanup
-clean_tables()
+def run():
+    # Clean tables before populating
+    clean_tables()

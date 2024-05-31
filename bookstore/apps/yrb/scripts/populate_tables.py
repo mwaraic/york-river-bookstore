@@ -5,12 +5,7 @@ from langdetect import detect
 import os
 import re
 from django.db import IntegrityError
-
-from .clean_tables import clean_tables
 from bookstore.apps.yrb.models import YrbBook, YrbCategory, YrbClub, YrbOffer, YrbShipping
-
-# Clean tables before populating
-clean_tables()
 
 # Define language dictionary
 language_dict = {
@@ -111,4 +106,6 @@ def populate_dummy_data():
     populate_shipping()
     print("Dummy data populated successfully!")
 
-populate_dummy_data()
+def run():
+    # Populate dummy data
+    populate_dummy_data()
