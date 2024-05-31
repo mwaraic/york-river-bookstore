@@ -14,6 +14,10 @@ import django_heroku
 import dj_database_url
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
@@ -57,7 +61,7 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '1mbe8eab2!7mbl58-1%dnr3det*av!#3ar2y)v5-rqcu_e@i)4'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -129,12 +133,12 @@ WSGI_APPLICATION = 'bookstore.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db7j5cm7c8rmnq',
-        'USER': 'lricqekuednocs',
-        'PASSWORD': '92068540c6c8c96e96ac85c99c5d2879f42c8d0396558e9b25d89281010ce473',
-        'HOST': 'ec2-3-214-136-47.compute-1.amazonaws.com',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 
@@ -185,18 +189,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
 # --------------------------------------------------
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-# -----------------------------------------------------
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
+# --------------------------------------------------
+
 
 django_heroku.settings(locals())
 

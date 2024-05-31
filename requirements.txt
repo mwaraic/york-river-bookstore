@@ -2,9 +2,10 @@ dj_database_url==0.5.0
 Django==3.1.8
 django_filter==2.4.0
 django_heroku==0.3.1
-django-extensions
-django-widget-tweaks
-django-tempus-dominus
-langdetect
-Faker
+django-extensions==3.2.3
+django-widget-tweaks==1.5.0
+django-tempus-dominus==5.1.2.17
+langdetect==1.0.9
+Faker==25.3.0
 psycopg2-binary>=2.8,<3.0
+python-dotenv

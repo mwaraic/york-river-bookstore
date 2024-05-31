@@ -1,5 +1,6 @@
 from django.db import transaction
 from bookstore.apps.yrb.models import YrbBook, YrbCategory, YrbClub, YrbCustomer, YrbMember, YrbOffer, YrbPurchase, YrbShipping
+from django.contrib.auth.models import User
 
 @transaction.atomic
 def clean_tables():
@@ -17,8 +18,14 @@ def clean_tables():
     # Delete YrbCategory records
     YrbCategory.objects.all().delete()
 
+    # Delete YrbMember records
+    YrbMember.objects.all().delete()
+
     # Delete YrbCustomer records
     YrbCustomer.objects.all().delete()
+
+    # Delete User records
+    User.objects.all().delete()
 
     # Delete YrbClub records
     YrbClub.objects.all().delete()
