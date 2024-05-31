@@ -4,6 +4,7 @@ from faker import Faker
 from langdetect import detect
 import os
 import re
+from django.db import IntegrityError
 
 from .clean_tables import clean_tables
 from bookstore.apps.yrb.models import YrbBook, YrbCategory, YrbClub, YrbOffer, YrbShipping
@@ -43,7 +44,7 @@ def populate_clubs():
     club_names = ['AAA', 'AARP', 'Basic', 'CNU Club', 'Oprah', 'Readers Digest', 'UVA Club', 'VaTech Club', 'W&M Club',
                   'YRB_Bronze', 'YRB_Gold', 'YRB_Silver']
     for name in club_names:
-        obj, created = YrbClub.objects.get_or_create(club=name, desp=fake.text())
+        obj, created = YrbClub.objects.get_or_create(club=name, desp=fake.text(50))
         if created:
             print(f"Club '{obj.club}' created successfully.")
         else:
@@ -80,15 +81,16 @@ def populate_books():
 # Populate YrbOffer
 def populate_offers():
     clubs = list(YrbClub.objects.all())
-    offers = []
-    for _ in range(100):
+    for _ in range(1000):
         club = random.choice(clubs)
         title = random.choice(list(YrbBook.objects.all()))
         year = title.year
         price = round(random.uniform(10, 100), 2)
         offerid = fake.unique.random_int(min=1, max=999999)
-        offers.append(YrbOffer(club=club, title=title, year=year, price=price, offerid=offerid))
-    YrbOffer.objects.bulk_create(offers)
+        try:
+            YrbOffer.objects.get_or_create(club=club, title=title, year=year, price=price, offerid=offerid)
+        except IntegrityError:
+            pass
 
 # Populate YrbShipping
 def populate_shipping():
@@ -109,5 +111,4 @@ def populate_dummy_data():
     populate_shipping()
     print("Dummy data populated successfully!")
 
-if __name__ == "__main__":
-    populate_dummy_data()
+populate_dummy_data()

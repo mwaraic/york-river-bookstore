@@ -2,7 +2,7 @@ from django.db import models
 
 
 class YrbBook(models.Model):
-    title = models.CharField(primary_key=True, max_length=25)
+    title = models.CharField(primary_key=True, max_length=100)
     year = models.SmallIntegerField()
     language = models.CharField(max_length=10, blank=True, null=True)
     cat = models.ForeignKey('YrbCategory', models.DO_NOTHING, db_column='cat')
@@ -57,19 +57,19 @@ class YrbOffer(models.Model):
     title = models.ForeignKey(YrbBook, models.DO_NOTHING, db_column='title')
     year = models.SmallIntegerField()
     price = models.DecimalField(max_digits=5, decimal_places=2)
-    offerid = models.SmallIntegerField(primary_key=True)
+    offerid = models.PositiveIntegerField(primary_key=True)
 
     class Meta:
 
         db_table = 'yrb_offer'
-        unique_together = (('club', 'title', 'year', 'offerid'),)
+        unique_together = (('club', 'title', 'year'),)
 
 
 class YrbPurchase(models.Model):
     id = models.AutoField(primary_key=True)
     cid = models.SmallIntegerField()
     club = models.CharField(max_length=15)
-    title = models.CharField(max_length=25)
+    title = models.CharField(max_length=100)
     year = models.SmallIntegerField()
     whenp = models.DateTimeField()
     qnty = models.SmallIntegerField()
