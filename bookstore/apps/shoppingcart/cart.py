@@ -16,7 +16,7 @@ class Cart(object):
             cart = self.session[settings.CART_SESSION_ID] = {}
         self.cart = cart
 
-    def add(self, product, quantity, weight,action=None):
+    def add(self, product, quantity, weight, action=None):
         """
         Add a product to the cart or update its quantity.
         """
@@ -33,7 +33,7 @@ class Cart(object):
                 'weight': weight,
                 'club': product.club.club,
                 'year': product.year
-                
+
             }
         else:
             newItem = True
@@ -75,13 +75,12 @@ class Cart(object):
             del self.cart[product_id]
             self.save()
 
-    def Change(self,product, quantity):
+    def Change(self, product, quantity):
         for key, value in self.cart.items():
             if key == str(product.offerid):
-               print(quantity)
-               value['quantity'] = quantity
-               self.save()
-               break
+                value['quantity'] = quantity
+                self.save()
+                break
             else:
                 print("Something Wrong")
 

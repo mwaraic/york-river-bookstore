@@ -7,15 +7,18 @@ from django.core.exceptions import ValidationError
 
 from bookstore.settings import AUTH_PASSWORD_VALIDATORS
 
+
 class UserForm(forms.ModelForm):
     class Meta:
-        model= User    
-        fields= ['username','first_name', 'last_name']
-        widgets={'username'  : forms.TextInput(attrs={'name': 'username', 'class':'form-control',  'type': 'text'}),
-                 'first_name': forms.TextInput(attrs={'name': 'first_name', 'class':'form-control', 'type': 'text'}),
-                 'last_name' : forms.TextInput(attrs={'name': 'last_name', 'class':'form-control','type': 'text'}),
-                 }
-    city= forms.CharField(widget=forms.TextInput(attrs={'name': 'city', 'class':'form-control', 'type': 'text'}))
+        model = User
+        fields = ['username', 'first_name', 'last_name']
+        widgets = {'username': forms.TextInput(attrs={'name': 'username', 'class': 'form-control',  'type': 'text'}),
+                   'first_name': forms.TextInput(attrs={'name': 'first_name', 'class': 'form-control', 'type': 'text'}),
+                   'last_name': forms.TextInput(attrs={'name': 'last_name', 'class': 'form-control', 'type': 'text'}),
+                   }
+    city = forms.CharField(widget=forms.TextInput(
+        attrs={'name': 'city', 'class': 'form-control', 'type': 'text'}))
+
     def __init__(self, *args, **kwargs):
         # first call parent's constructor
         super(UserForm, self).__init__(*args, **kwargs)
@@ -24,35 +27,37 @@ class UserForm(forms.ModelForm):
         self.fields['first_name'].required = False
         self.fields['last_name'].required = False
         self.fields['city'].required = False
-        
+
     def clean_username(self):
-       if self.cleaned_data['username'].strip() == '':
+        if self.cleaned_data['username'].strip() == '':
             raise ValidationError('This field cannot be blank!')
-       return self.cleaned_data['username']
+        return self.cleaned_data['username']
+
     def clean_first_name(self):
-       if self.cleaned_data['first_name'].strip() == '':
+        if self.cleaned_data['first_name'].strip() == '':
             raise ValidationError('This field cannot be blank!')
-       return self.cleaned_data['first_name']
+        return self.cleaned_data['first_name']
+
     def clean_last_name(self):
-       if self.cleaned_data['last_name'].strip() == '':
+        if self.cleaned_data['last_name'].strip() == '':
             raise ValidationError('This field cannot be blank!')
-       return self.cleaned_data['last_name']
+        return self.cleaned_data['last_name']
+
     def clean_city(self):
-       if self.cleaned_data['city'].strip() == '':
+        if self.cleaned_data['city'].strip() == '':
             raise ValidationError('This field cannot be blank!')
-       return self.cleaned_data['city']
-  
+        return self.cleaned_data['city']
+
 
 class MemberForm(forms.ModelForm):
-    club= forms.ModelChoiceField(queryset=YrbClub.objects.values_list('club', flat=True).order_by('club'), empty_label='Select new club')
+    club = forms.ModelChoiceField(queryset=YrbClub.objects.values_list(
+        'club', flat=True), empty_label='Select new club')
+
     class Meta:
-        model= YrbMember 
-        fields= ['cid','club']
-        
+        model = YrbMember
+        fields = ['cid', 'club']
+
     def __init__(self, user, *args, **kwargs):
-         super(MemberForm, self).__init__(*args, **kwargs)
-         self.fields['club'].queryset = YrbClub.objects.values_list('club', flat=True).order_by('club').difference(YrbMember.objects.filter(cid=user.id).values_list('club', flat=True))
-         self.fields['cid'].queryset=YrbCustomer.objects.filter(cid=user.id)
-       
-   
-        
+        super(MemberForm, self).__init__(*args, **kwargs)
+        self.fields['club'].queryset = YrbClub.objects.values_list('club', flat=True).difference(YrbMember.objects.filter(cid=user.id).values_list('club', flat=True))
+        self.fields['cid'].queryset = YrbCustomer.objects.filter(cid=user.id)

@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class YrbBook(models.Model):
     title = models.CharField(primary_key=True, max_length=25)
     year = models.SmallIntegerField()
@@ -8,17 +9,16 @@ class YrbBook(models.Model):
     weight = models.SmallIntegerField()
 
     class Meta:
-        
+
         db_table = 'yrb_book'
         unique_together = (('title', 'year'),)
-    
 
 
 class YrbCategory(models.Model):
     cat = models.CharField(primary_key=True, max_length=10)
 
     class Meta:
-        
+
         db_table = 'yrb_category'
 
 
@@ -27,7 +27,7 @@ class YrbClub(models.Model):
     desp = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
-            
+
         db_table = 'yrb_club'
 
 
@@ -37,16 +37,17 @@ class YrbCustomer(models.Model):
     city = models.CharField(max_length=15, null=True)
 
     class Meta:
-        
+
         db_table = 'yrb_customer'
 
 
 class YrbMember(models.Model):
-    club = models.OneToOneField(YrbClub, models.DO_NOTHING, db_column='club', primary_key=True)
+    club = models.OneToOneField(
+        YrbClub, models.DO_NOTHING, db_column='club', primary_key=True)
     cid = models.ForeignKey(YrbCustomer, models.DO_NOTHING, db_column='cid')
 
     class Meta:
-        
+
         db_table = 'yrb_member'
         unique_together = (('club', 'cid'),)
 
@@ -59,7 +60,7 @@ class YrbOffer(models.Model):
     offerid = models.SmallIntegerField(primary_key=True)
 
     class Meta:
-        
+
         db_table = 'yrb_offer'
         unique_together = (('club', 'title', 'year', 'offerid'),)
 
@@ -72,16 +73,14 @@ class YrbPurchase(models.Model):
     year = models.SmallIntegerField()
     whenp = models.DateTimeField()
     qnty = models.SmallIntegerField()
-    offerid = models.ForeignKey(YrbOffer,models.DO_NOTHING, db_column='offerid')
+    offerid = models.ForeignKey(
+        YrbOffer, models.DO_NOTHING, db_column='offerid')
 
     class Meta:
-       
+
         db_table = 'yrb_purchase'
-        unique_together = (('id','club', 'title', 'year', 'whenp', 'offerid', 'cid'),)
-    
-    
-    
-    
+        unique_together = (('id', 'club', 'title', 'year',
+                           'whenp', 'offerid', 'cid'),)
 
 
 class YrbShipping(models.Model):
@@ -89,6 +88,6 @@ class YrbShipping(models.Model):
     cost = models.DecimalField(unique=True, max_digits=5, decimal_places=2)
 
     class Meta:
-        managed = False
+
         db_table = 'yrb_shipping'
-        
+        unique_together = (('weight', 'cost'),)

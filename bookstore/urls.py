@@ -26,16 +26,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('club/', club_view, name='club'),
     path('account_create/', account_create_view, name='account_create'),
-    path('account_login/', account_login_view, name='account_login'), 
+    path('account_login/', account_login_view, name='account_login'),
     path('logout/', logoutUser, name="logout"),
     path('account/purchase/', home_view, name='purchase'),
     path('account/profile/edit', profile_edit_view, name='editprofile'),
     path('account/profile/', profile_view, name='home'),
     path('account/clubs/', clubs_view, name='clubs'),
-    path('books/',include('bookstore.apps.books.urls',namespace="books")),
-    path('cart/',include('bookstore.apps.shoppingcart.urls',namespace="cart")),
+    path('books/', include('bookstore.apps.books.urls', namespace="books")),
+    path('cart/', include('bookstore.apps.shoppingcart.urls', namespace="cart")),
     path('', index_view, name="shop"),
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-
-
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

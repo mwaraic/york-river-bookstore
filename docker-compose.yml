@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+    python:
+        build:
+            context: .
+            dockerfile: docker/python/Dockerfile
+        volumes:
+            - ./:/bookstore
+        ports:
+            - 8000:8000
+            - 3000:3000

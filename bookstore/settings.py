@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+from django.contrib.messages import constants as messages
 import django_heroku
 import dj_database_url
 from pathlib import Path
@@ -64,7 +65,7 @@ DEBUG = False
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','yorkriverbookstore.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'yorkriverbookstore.herokuapp.com']
 
 # Application definition
 
@@ -81,11 +82,12 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_filters',
     'tempus_dominus',
+    'django_extensions',
     'bookstore.apps.books',
     'bookstore.apps.books.templatetags.my_tags',
     'bookstore.apps.shoppingcart.templatetags.cart_tag',
     'bookstore.apps.shoppingcart',
-    'whitenoise.runserver_nostatic'   
+    'whitenoise.runserver_nostatic'
 ]
 CART_SESSION_ID = 'cart'
 MIDDLEWARE = [
@@ -126,12 +128,12 @@ WSGI_APPLICATION = 'bookstore.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-     'default': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db7j5cm7c8rmnq', 
-        'USER': 'lricqekuednocs', 
+        'NAME': 'db7j5cm7c8rmnq',
+        'USER': 'lricqekuednocs',
         'PASSWORD': '92068540c6c8c96e96ac85c99c5d2879f42c8d0396558e9b25d89281010ce473',
-        'HOST': 'ec2-3-214-136-47.compute-1.amazonaws.com', 
+        'HOST': 'ec2-3-214-136-47.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -157,7 +159,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-from django.contrib.messages import constants as messages
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
@@ -184,22 +185,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_ROOT =  os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-#--------------------------------------------------
+# --------------------------------------------------
 STATIC_URL = '/static/'
-#-----------------------------------------------------
+# -----------------------------------------------------
 STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static')
 ]
-#STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
 django_heroku.settings(locals())
 
 try:
-    from .__local_settings import *
+    from .local_settings import *
 except ImportError:
     pass

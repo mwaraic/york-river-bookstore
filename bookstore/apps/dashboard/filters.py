@@ -9,11 +9,10 @@ import datetime
 class PurchaseFilter(django_filters.FilterSet):
     now = datetime.datetime.now()
     title = django_filters.CharFilter(lookup_expr='icontains')
-    club = django_filters.ModelChoiceFilter(queryset=YrbClub.objects.values_list('club', flat=True))
-    whenp= django_filters.NumberFilter(lookup_expr='year')
-    
+    club = django_filters.ModelChoiceFilter(
+        queryset=YrbClub.objects.values_list('club', flat=True))
+    whenp = django_filters.NumberFilter(lookup_expr='year')
+
     class Meta:
         model = YrbPurchase
-        fields = ['id','cid','club','title','whenp']
-        
-    
+        fields = ['id', 'cid', 'club', 'title', 'whenp']
