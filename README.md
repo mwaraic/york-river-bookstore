@@ -1,5 +1,43 @@
 # York River Bookstore
 
+This is a web application built using Django, designed to provide users with a convenient platform to purchase books related to their favorite clubs at the best offers. Whether you're a fan of sports, literature, or any other interest group, York River Bookstore aims to cater to your reading needs with a wide selection of books.
+
+## Features
+
+### User Authentication
+- **User Registration:** Users can create an account on the platform by providing necessary details.
+- **User Login:** Registered users can log in securely to access their account and make purchases.
+
+### Club Selection
+- **Browse Clubs:** Users can browse through a list of available clubs covering various interests.
+
+### Book Catalog
+- **Search and Filter:** Users can search for books by title, author, genre, or club affiliation.
+- **Book Details:** Detailed information about each book, including title, author, synopsis, and price.
+
+### Shopping Cart
+- **Add to Cart:** Users can add books to their shopping cart for easy checkout.
+- **Modify Quantity:** Users can adjust the quantity of books in their cart before proceeding to checkout.
+- **Remove from Cart:** Users can remove items from their cart if they change their mind.
+
+### Checkout Process
+- **Order Summary:** Users can review their order details before making the final payment.
+- **Order Confirmation:** Confirmation message upon successful purchase.
+
+### User Profile
+- **View Order History:** Users can view their past orders and track their order status.
+- **Update Profile:** Users can update their personal information, including shipping address and contact details.
+
+### Responsive Design
+- **Mobile Compatibility:** The web application is responsive, ensuring a seamless browsing and shopping experience across devices.
+
+## Technologies Used
+- **Django:** Python web framework for backend development.
+- **HTML/CSS:** Frontend markup and styling.
+- **JavaScript:** Frontend interactivity and dynamic content.
+- **SQLite:** Database management system for storing application data.
+- **Bootstrap:** Frontend framework for responsive design and layout.
+
 ## Running Instructions
 
 To start the project, follow these steps:
