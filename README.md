@@ -35,7 +35,7 @@ This is a web application built using Django, designed to provide users with a c
 - **Django:** Python web framework for backend development.
 - **HTML/CSS:** Frontend markup and styling.
 - **JavaScript:** Frontend interactivity and dynamic content.
-- **SQLite:** Database management system for storing application data.
+- **Postgresql:** Database management system for storing application data.
 - **Bootstrap:** Frontend framework for responsive design and layout.
 
 ## Running Instructions
