@@ -2,8 +2,6 @@
 
 This is a web application built using Django, designed to provide users with a convenient platform to purchase books related to their favorite clubs at the best offers. Whether you're a fan of sports, literature, or any other interest group, York River Bookstore aims to cater to your reading needs with a wide selection of books.
 
-![Welcome](./documentation/images/welcome.png)
-
 ## Features
 
 ### User Authentication
@@ -39,7 +37,7 @@ This is a web application built using Django, designed to provide users with a c
 - **View Order History:** Users can view their past orders and track their order status.
 - **Update Profile:** Users can update their personal information, including shipping address and contact details.
 
-![User Profile](./documentation/images/login.png)
+![User Profile](./documentation/images/purchases.png)
 
 ## Technologies Used
 
